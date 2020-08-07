@@ -18,7 +18,7 @@ function App() {
           console.log("ya", item.imageSrc);
           return (
             <li key={item.name}>
-              {`${item.name}`}: <br />
+              {`${item.name}`}: <br></br>
               <img src={`${item.imageSrc}`} alt={`${item.name}`} />
             </li>
           );
