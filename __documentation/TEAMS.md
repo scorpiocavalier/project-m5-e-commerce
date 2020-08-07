@@ -1,22 +1,5 @@
 # Teams
 
-Teams will be created by the instructor.
-
-Each team should have
-
-- 3 or 4 students of a variety of skill levels and temperament.
-- a TC assigned to act as a Project Manager (PM) for the week.
-
-_example_
-
-## Team 0
-
-- Spongebob Squarepants
-- Homer Simpson
-- Scary Terry
-- Morty Smith
-- **PM/TC: Rick S.**
-
 ## Team 1
 
 - Johnny Tortorici
@@ -29,7 +12,7 @@ _example_
 
 - Antonio Placido
 - Ning An
-- Jordan Gabay
+- Rupinder Singh Bagri
 - Mrwan Zein
 - **PM/TC: Richard**
 
@@ -37,14 +20,14 @@ _example_
 
 - Ethan Bradley-Zhivotovsky
 - Jackie Chiem
-- Rupinder Singh Bagri
+- Jordan Gabay
 - **PM/TC: Sadnan**
 
 ## Team 4
 
 - Robbie Bart
 - Arturo Chen Fan
-- Caroline Vinet
+- Kanwar Nao Nihal Singh Gill
 - **PM/TC: Sadnan**
 
 ## Team 5
@@ -66,6 +49,6 @@ _example_
 
 - Kenny Vu
 - Jeffrey Gagnon Placido
+- Caroline Vinet
 - Myriam Mansouri
-- Kanwar Nao Nihal Singh Gill
 - **PM/TC: Daniel**
