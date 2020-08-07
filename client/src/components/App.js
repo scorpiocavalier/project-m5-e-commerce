@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
+import companies from './companies'
+import items from './items'
 
-function App() {
-  const [bacon, setBacon] = useState(null);
+function App () {
+  const companiesArr = companies.map((item) => item)
+  const itemsArr = items.map((item) => item)
 
-  useEffect(() => {
-    fetch("/bacon")
-      .then((res) => res.json())
-      .then((data) => setBacon(data));
-  }, []);
+  const duplicateCategoriesArr = itemsArr.map(item => {
+    return item.category
+  })
 
-  return <div>Hello world!</div>;
+  const categoriesArr = [ ...new Set(duplicateCategoriesArr) ]
+
+  console.log(categoriesArr)
+
+  return <div><ul></ul></div>
 }
 
-export default App;
+export default App

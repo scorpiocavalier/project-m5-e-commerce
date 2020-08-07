@@ -1,6 +1,6 @@
 const fs = require('file-system');
 
-const companies = JSON.parse(fs.readFileSync('server/data/companies.json'));
+export const companies = JSON.parse(fs.readFileSync('server/data/companies.json'));
 // const items = JSON.parse(fs.readFileSync('server/data/items.json'));
 
 const updatedArr = [];
