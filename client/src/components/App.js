@@ -1,15 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import companies from "./companies";
+import items from "./items";
 
 function App() {
-  const [bacon, setBacon] = useState(null);
+  const companiesArr = companies.map((item) => item);
+  const itemsArr = items.map((item) => item);
 
-  useEffect(() => {
-    fetch('/bacon')
-      .then(res => res.json())
-      .then(data => setBacon(data));
-  }, []);
-
-  return <div>{bacon ? bacon : `...where's my stuff?...`}</div>;
+  const duplicateCategoriesArr = itemsArr.map((item) => {
+    return item.category;
+  });
+  const categoriesArr = [...new Set(duplicateCategoriesArr)];
+  console.log(itemsArr[0].imageSrc);
+  return (
+    <div>
+      <ul>
+        {itemsArr.map((item) => {
+          console.log("ya", item.imageSrc);
+          return (
+            <li key={item.name}>
+              {`${item.name}`}: <br />
+              <img src={`${item.imageSrc}`} alt={`${item.name}`} />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 }
-
 export default App;

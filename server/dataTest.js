@@ -15,3 +15,5 @@ companies.forEach((item) => {
 });
 
 fs.writeFileSync('server/data/fixedCompanies.json', JSON.stringify(updatedArr));
+
+export default 
