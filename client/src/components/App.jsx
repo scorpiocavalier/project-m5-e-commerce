@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import companies from "./companies";
+import Shop from "./Shop";
 import { BrowserRouter, Route } from "react-router-dom";
 
 import companies from "../Test Data/companies";
@@ -64,8 +66,12 @@ function App() {
 
         <main className="main">
           <div className="content">
-            <Route path="/product/:id" component={ProductPage} />
-            <Route exact path="/" component={HomePage} />
+            <Route path="/products">
+              <Shop />
+            </Route>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
           </div>
         </main>
 
