@@ -5,7 +5,7 @@ import companies from "../companies";
 import items from "../items";
 
 //components
-import HomePage from "./Pages/HomePage";
+import HomePage from "./Pages/HomePage/HomePage";
 import ProductPage from "./Pages/ProductPage";
 
 function App() {
