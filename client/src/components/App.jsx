@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import companies from "./companies";
 import items from "./items";
+import Shop from "./Shop";
 
 function App() {
   const companiesArr = companies.map((item) => item);
@@ -19,20 +20,21 @@ function App() {
   console.log(productsOfACategory);
 
   return (
-    <div>
-      <ul>
-        {productsOfACategory.map((item) => {
-          return (
-            <>
-              <li>
-                <img src={`${item.imageSrc}`} alt={`${item.name}`} />
-                <p>{item.body_location}</p>
-              </li>
-            </>
-          );
-        })}
-      </ul>
-    </div>
+    <Shop />
+    // <div>
+    //   <ul>
+    //     {productsOfACategory.map((item) => {
+    //       return (
+    //         <>
+    //           <li>
+    //             <img src={`${item.imageSrc}`} alt={`${item.name}`} />
+    //             <p>{item.body_location}</p>
+    //           </li>
+    //         </>
+    //       );
+    //     })}
+    //   </ul>
+    // </div>
   );
 }
 export default App;
