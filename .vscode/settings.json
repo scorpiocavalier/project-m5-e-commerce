@@ -1,4 +1,11 @@
 {
   "javascript.format.semicolons": "insert",
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "editor.minimap.maxColumn": 200,
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.showSlider": "always",
+  "editor.smoothScrolling": true,
+  "editor.cursorSmoothCaretAnimation": true,
+  "workbench.list.smoothScrolling": true,
+  "editor.cursorBlinking": "phase"
 }
