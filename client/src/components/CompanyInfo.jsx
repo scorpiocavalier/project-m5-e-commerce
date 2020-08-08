@@ -1,5 +1,5 @@
 import React from "react";
-import companies from "./companies";
+import companies from "../Test Data/companies";
 
 export default function CompanyInfo({ companyId }) {
   const productCompany = companies.find((company) => {
