@@ -1,6 +1,6 @@
 import React from "react";
 import Product from "./Product";
-import testItems from "./testItems";
+import testItems from "../Test Data/test_items";
 
 export default function ProductList() {
   const {

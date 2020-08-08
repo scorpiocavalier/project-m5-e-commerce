@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import companies from "./companies";
+// import companies from "./companies";
 import Shop from "./Shop";
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -7,11 +7,11 @@ import companies from "../Test Data/companies";
 import items from "../Test Data/test_items";
 
 //components
-import HomePage from "./Pages/HomePage";
+import HomePage from "./Pages/HomePage/HomePage";
 import ProductPage from "./Pages/ProductPage";
 
 function App() {
-  const companiesArr = companies.map((item) => item);
+  // const companiesArr = companies.map((item) => item);
   const itemsArr = items.map((item) => item);
 
   const duplicateCategoriesArr = itemsArr.map((item) => {

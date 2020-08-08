@@ -1,5 +1,5 @@
 import React from "react";
-import items from "../../items";
+import items from "../../../Test Data/test_items";
 
 const HomePage = () => {
   return (
