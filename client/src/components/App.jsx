@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 
-import companies from "../companies";
+import companies from "../Test Data/companies";
 import items from "../Test Data/test_items";
 
 //components
