@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 
 import companies from "../companies";
-import items from "../items";
+import items from "../Test Data/test_items";
 
 //components
 import HomePage from "./Pages/HomePage";
