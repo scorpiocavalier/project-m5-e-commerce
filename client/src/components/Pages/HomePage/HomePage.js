@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import items from "../../../Test Data/test_items";
 
 const HomePage = () => {
@@ -8,9 +9,12 @@ const HomePage = () => {
         return (
           <li key={item.id}>
             <div className="product">
-              <img src={item.imageSrc} alt={item.name} />
+              <Link to={"/product/" + item.id}>
+                <img src={item.imageSrc} alt={item.name} />
+              </Link>
+
               <div className="product-name">
-                <a href="product.html">{item.name}</a>
+                <Link to={"/product/" + item.id}>{item.name}</Link>
               </div>
 
               <div className="product-body_location">{item.body_location}</div>
