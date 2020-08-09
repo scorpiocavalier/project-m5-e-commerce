@@ -6,7 +6,7 @@ import GlobalStyle from "./GlobalStyle";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Shop from "./components/Shop";
-import Product from './components/Product'
+// import Product from './components/Product'
 import Footer from "./components/Footer";
 
 // A SPA (Single Page App) will always have header and footer,
