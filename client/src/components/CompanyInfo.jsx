@@ -1,25 +1,21 @@
 import React from "react";
+import styled from "styled-components";
+
 import companies from "../Test Data/companies";
 
-export default function CompanyInfo({ companyId }) {
+export default ({ companyId }) => {
   const productCompany = companies.find((company) => {
     return company.id === companyId;
   });
 
   return (
-    <>
+    <Wrapper>
       <p>{productCompany.name}</p>
       <p>{productCompany.url}</p>
-    </>
+    </Wrapper>
   );
-}
+};
 
-// const productCompany = (arr, id) => {
-//   arr.find((item) => {
-//     return item.id === props;
-//   });
-// };
-
-// {companies.find((company) => {
-//   return company.id === props.id;
-// })}
+const Wrapper = styled.div`
+  display: flex;
+`;

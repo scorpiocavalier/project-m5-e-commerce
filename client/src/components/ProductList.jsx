@@ -1,20 +1,11 @@
 import React from "react";
+
 import Product from "./Product";
 import testItems from "../Test Data/test_items";
 
-export default function ProductList() {
-  const {
-    imageSrc,
-    name,
-    price,
-    numInStock,
-    category,
-    body_location,
-    companyId,
-  } = testItems;
-
+export default () => {
   return (
-    <div>
+    <>
       {testItems.map((item) => {
         return (
           // console.log("Product List Level Company", testItems.companyId);
@@ -30,6 +21,6 @@ export default function ProductList() {
           />
         );
       })}
-    </div>
+    </>
   );
-}
+};
