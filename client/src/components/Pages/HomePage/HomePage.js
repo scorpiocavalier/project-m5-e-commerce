@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import items from "../../../Test Data/test_items";
 
 const HomePage = () => {
+  // const [products, setProducts] = useState;
+
+  useEffect(() => {
+    fetch("/api/routes/products")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }, []);
+
   return (
     <ul className="products">
       {items.map((item) => {

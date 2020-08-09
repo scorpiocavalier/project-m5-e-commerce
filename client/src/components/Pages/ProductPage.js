@@ -10,33 +10,97 @@ const ProductPage = (props) => {
   // console.log("product", product);
 
   return (
-    <Wrapper>
-      <Back>
-        <Link to="/">Back to HomePage</Link>
-      </Back>
-      <Details>
-        <ProductImage>
-          <img src={product.imageSrc} />
-        </ProductImage>
-        <ProductInfo>
-          <ul>
-            <li>
-              <h3>{product.name}</h3>
-            </li>
-          </ul>
-        </ProductInfo>
-      </Details>
-    </Wrapper>
+    <Details>
+      <ProductImage>
+        <WatchImage src={product.imageSrc} />
+      </ProductImage>
+      <ProductInfo>
+        <InfoList>
+          <li>
+            <h4>{product.name}</h4>
+          </li>
+          <li>Price:{product.price}</li>
+          <li>Category:{product.category}</li>
+        </InfoList>
+      </ProductInfo>
+      <ProductAction>
+        <ActionList>
+          <li>Price:{product.price}</li>
+          <li>Status:{product.numInStock > 0 ? "In Stock" : "Out Of Stock"}</li>
+          <li>
+            Qty:
+            <select>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </li>
+          <li>
+            <Btn>Add to cart</Btn>
+          </li>
+        </ActionList>
+      </ProductAction>
+    </Details>
   );
 };
 
-const Wrapper = styled.div``;
+const Details = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 1rem;
+`;
 
-const Back = styled.div``;
+const ProductImage = styled.div`
+  flex: 2 1 30rem;
+`;
 
-const Details = styled.div``;
+const WatchImage = styled.img`
+  max-width: 30rem;
+  max-height: 100%;
+`;
 
-const ProductImage = styled.div``;
+const ProductInfo = styled.div`
+  flex: 1 1 30rem;
+`;
 
-const ProductInfo = styled.div``;
+const InfoList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  li {
+    margin-bottom: 1rem;
+  }
+`;
+
+const ProductAction = styled.div`
+  flex: 1 1 30 rem;
+  border: 0.11rem #808080 solid;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f0f0f0;
+  ul li:last-child {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+const ActionList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  li {
+    margin-bottom: 1rem;
+  }
+`;
+
+const Btn = styled.button`
+  background-color: #ff8000;
+  border: none;
+  height: 1.5rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+`;
+
 export default ProductPage;
