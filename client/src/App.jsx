@@ -6,6 +6,7 @@ import GlobalStyle from "./GlobalStyle";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Shop from "./components/Shop";
+import Product from './components/Product'
 import Footer from "./components/Footer";
 
 // A SPA (Single Page App) will always have header and footer,
@@ -26,6 +27,9 @@ export default () => {
           <Route path="/products">
             <Shop />
           </Route>
+          {/* <Route path="/products/:productId">
+            <Product />
+          </Route> */}
         </ContentWrapper>
 
         <FooterWrapper>
@@ -58,6 +62,5 @@ const ContentWrapper = styled.div`
 const FooterWrapper = styled.div`
   grid-area: footer;
   height: 100%;
-  position: relative;
   background: rgba(32, 48, 64, 1);
 `;

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import CompanyInfo from "./CompanyInfo";
-import items from "../Test Data/test_items";
 
 /* Instead of displaying the quantity in stock, here is a function that mimics the functionality
 of amazon, which just shows the user the minimum relevant info, ie: is it in or out of stock.
@@ -11,9 +10,6 @@ I dont think the user actually cares how much stock there is, as long as there i
 Arturo: I helped you simplify the method.
 */
 const checkInStock = (qty) => (qty > 0 ? "In Stock" : "Out of Stock");
-
-// Arturo: You should be sending a single item instead of the whole list.
-// checkInStock(items, 0);
 
 /*
 The Product component is taking props from the map in the product list component. The
