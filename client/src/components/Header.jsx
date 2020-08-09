@@ -9,20 +9,26 @@ export default () => {
 
   return (
     <Wrapper>
-      {/* <div className="brand"> */}
-      {/* <button onClick={openMenu}>&#9776;</button> */}
-      <Link to="/">Ark</Link>
-      {/* </div> */}
-      {/* <div className="header-links">
-        <a href="cart.html">Cart</a>
-        <a href="signin.html">SignIn</a>
-      </div> */}
+      <StyledLink to="/">
+        <h2>THE ARK PROJECT</h2>
+      </StyledLink>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  height: 100%;
+`;
+
+const StyledLink = styled(Link)`
+  color: white;
+  &:active {
+    color: white;
+  }
+  &:visited {
+    color: white;
+  }
 `;

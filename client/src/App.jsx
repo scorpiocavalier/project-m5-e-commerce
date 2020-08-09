@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from "styled-components";
 
+import GlobalStyle from "./GlobalStyle";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Shop from "./components/Shop";
@@ -11,8 +12,9 @@ import Footer from "./components/Footer";
 // with only the content displayed based on current route.
 export default () => {
   return (
-    <Router>
-      <Grid>
+    <Grid>
+      <GlobalStyle />
+      <Router>
         <HeaderWrapper>
           <Header />
         </HeaderWrapper>
@@ -29,14 +31,14 @@ export default () => {
         <FooterWrapper>
           <Footer />
         </FooterWrapper>
-      </Grid>
-    </Router>
+      </Router>
+    </Grid>
   );
 };
 
 const Grid = styled.div`
   display: grid;
-  grid: 10vh 90vh auto/ 1fr;
+  grid: 8vh auto 8vh / 1fr;
   grid-template-areas:
     "header"
     "content"
@@ -45,6 +47,7 @@ const Grid = styled.div`
 
 const HeaderWrapper = styled.div`
   grid-area: header;
+  height: 100%;
   background: #203040;
 `;
 
@@ -54,5 +57,6 @@ const ContentWrapper = styled.div`
 
 const FooterWrapper = styled.div`
   grid-area: footer;
+  height: 100%;
   background: #203040;
 `;
