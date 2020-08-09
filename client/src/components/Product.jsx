@@ -1,7 +1,8 @@
 import React from "react";
-import items from "../Test Data/test_items";
 import styled from "styled-components";
+
 import CompanyInfo from "./CompanyInfo";
+import items from "../Test Data/test_items";
 
 /* Instead of displaying the quantity in stock, here is a function that mimics the functionality
 of amazon, which just shows the user the minimum relevant info, ie: is it in or out of stock.
@@ -17,11 +18,11 @@ const checkInStock = (item) => {
 checkInStock(items, 0);
 
 /*
-the Product component is taking props from the map in the product list component. The 
+the Product component is taking props from the map in the product list component. The
 checkInStock function explaind in the comment above is used below.
 */
 
-export default function Product(props) {
+export default (props) => {
   return (
     <ProductWrapper>
       {/* {console.log("map test", props.name)} */}
@@ -36,7 +37,7 @@ export default function Product(props) {
       </ProductInformationWrapper>
     </ProductWrapper>
   );
-}
+};
 /*
 The product wrapper displays flex-direction column in order to acheive a card format for each
 item. It is clear that there is just not enough text info in the data for the img to be display

@@ -1,7 +1,8 @@
 import React from "react";
-import items from "../../../Test Data/test_items";
 
-const Sidebar = () => {
+import items from "../Test Data/test_items";
+
+export default () => {
   const itemsArr = items.map((item) => item);
 
   const duplicateCategoriesArr = itemsArr.map((item) => {
@@ -33,5 +34,3 @@ const Sidebar = () => {
     </aside>
   );
 };
-
-export default Sidebar;
