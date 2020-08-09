@@ -4,15 +4,15 @@ import Product from "./Product";
 import testItems from "../Test Data/test_items";
 
 export default () => {
-  const {
-    imageSrc,
-    name,
-    price,
-    numInStock,
-    category,
-    body_location,
-    companyId,
-  } = testItems;
+  // const {
+  //   imageSrc,
+  //   name,
+  //   price,
+  //   numInStock,
+  //   category,
+  //   body_location,
+  //   companyId,
+  // } = testItems;
 
   return (
     <div>

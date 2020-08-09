@@ -3,10 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export default () => {
-  const openMenu = () => {
-    document.querySelector(".sidebar").classList.add("open");
-  };
-
   return (
     <Wrapper>
       <StyledLink to="/">
@@ -24,11 +20,11 @@ const Wrapper = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color: white;
+  color: #eee;
   &:active {
-    color: white;
+    color: #eee;
   }
   &:visited {
-    color: white;
+    color: #eee;
   }
 `;

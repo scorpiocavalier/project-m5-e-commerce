@@ -17,6 +17,6 @@ const Wrapper = styled.div`
 `;
 
 const Copyright = styled.span`
-  font-size: 14px;
-  color: white;
+  font-size: 12px;
+  color: #ccc;
 `;

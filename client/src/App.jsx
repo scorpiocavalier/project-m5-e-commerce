@@ -48,7 +48,7 @@ const Grid = styled.div`
 const HeaderWrapper = styled.div`
   grid-area: header;
   height: 100%;
-  background: #203040;
+  background: rgba(32, 48, 64, 0.95);
 `;
 
 const ContentWrapper = styled.div`
@@ -58,5 +58,6 @@ const ContentWrapper = styled.div`
 const FooterWrapper = styled.div`
   grid-area: footer;
   height: 100%;
-  background: #203040;
+  position: relative;
+  background: rgba(32, 48, 64, 1);
 `;
