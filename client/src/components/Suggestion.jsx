@@ -9,17 +9,18 @@ const userPredict = (suggestion, input) => {
   return { suggestion1, suggestion2 };
 };
 
-export default ({ matchedSuggestions, userValue }) => {
+export default ({ matchedSuggestion, userValue }) => {
   const { suggestion1, suggestion2 } = userPredict(
-    matchedSuggestions,
+    matchedSuggestion,
     userValue
   );
 
   return (
     <List>
-      {suggestion1}
-      <Prediction>{suggestion2}</Prediction>
-      <Type>in</Type>
+      <Prediction>{suggestion1}</Prediction>
+      {suggestion2}
+      <> </>
+      <Type>in {matchedSuggestion.category}</Type>
     </List>
   );
 };
@@ -29,7 +30,8 @@ const List = styled.li`
   padding: 0.5rem 0.5rem;
   width: 100%;
   &:hover {
-    background-color: grey;
+    background-color: #647382;
+    border-radius: 1rem;
   }
 `;
 const Prediction = styled.span`
@@ -38,5 +40,5 @@ const Prediction = styled.span`
 const Type = styled.span`
   font-size: 1rem;
   font-style: italic;
-  color: blue;
+  color: #808080;
 `;

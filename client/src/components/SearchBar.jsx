@@ -1,6 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-// import { TiDeleteOutline } from "react-icons/ti";
 import Suggestion from "./Suggestion";
 import { useShopContext } from "../context/ShopContext";
 
@@ -9,19 +8,18 @@ export default () => {
     state: { items },
   } = useShopContext();
   const [userValue, setUserValue] = useState("");
-  const [selectedSuggestion, setSelectedSuggestion] = useState(0);
-  // const [dropDown, setDropDown] = useState(false);
+  const [dropDown, setDropDown] = useState(false);
 
-  const watch = useRef();
-
-  const matchedSuggestion = (watch) => {
-    if (watch.length > 1) {
-      return items.filter((item) => console.log(item.name));
+  const matchedSuggestion = (userInput) => {
+    if (userInput.length > 1) {
+      return items.filter((item) =>
+        item.name.toLowerCase().includes(userInput.toLowerCase())
+      );
     }
     return [];
   };
 
-  let listMatchedSuggestion = matchedSuggestion(watch);
+  let listMatchedSuggestion = matchedSuggestion(userValue);
 
   return (
     <>
@@ -30,19 +28,19 @@ export default () => {
           type="text"
           value={userValue}
           onChange={(ev) => {
-            // if (!dropDown) setDropDown(true);
+            if (!dropDown) setDropDown(true);
             setUserValue(ev.target.value);
-            console.log(userValue);
           }}
-        ></InputData>
+        />
       </Wrapper>
-      {listMatchedSuggestion.length > 0 && (
+      {listMatchedSuggestion.length > 0 && dropDown && (
         <List>
           {listMatchedSuggestion.map((matchedSuggestion) => (
             <Suggestion
-              ref={watch}
+              matchedSuggestion={matchedSuggestion}
               key={matchedSuggestion.id}
               userValue={userValue}
+              category={matchedSuggestion.category}
             />
           ))}
         </List>
@@ -51,7 +49,11 @@ export default () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const InputData = styled.input`
   border-radius: 0.5rem;
@@ -66,5 +68,5 @@ const List = styled.ul`
   align-items: flex-start;
   padding: 1rem;
   margin: 1rem auto;
-  max-width: 3rem;
+  max-width: 30rem;
 `;
