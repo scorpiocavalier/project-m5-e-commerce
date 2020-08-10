@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
 router.get('/:productId', (req, res) => {
   const id = req.params.productId;
   const item = items.find(item => item.id == id)
-  res.status(200).json({ content: item });
+  res.status(200).json(item);
 });
 
 module.exports = router;
