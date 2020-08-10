@@ -19,6 +19,18 @@ const GlobalStyle = createGlobalStyle`
   li {
     list-style-type: none;
   }
+
+  button {
+    border: 1px solid #ccc;
+    background: none;
+    padding: 12px 10px;
+    margin: 10px;
+    border-radius: 5px;
+    &:hover {
+      background: #2b3b4a;
+      color: white;
+    }
+  }
 `;
 
 export default GlobalStyle;
