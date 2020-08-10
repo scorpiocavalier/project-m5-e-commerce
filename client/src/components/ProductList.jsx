@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Product from "./Product";
 import { useShopContext } from "../context/ShopContext";
+import SearchBar from "./SearchBar";
 
 export default () => {
   const {
@@ -11,6 +12,7 @@ export default () => {
 
   return (
     <GridWrapper>
+      <SearchBar items={items} />
       {items.map((item) => (
         <Product key={item.id} item={item} />
       ))}

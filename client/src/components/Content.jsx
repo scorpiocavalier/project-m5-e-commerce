@@ -7,6 +7,7 @@ import Spinner from "./Spinner";
 import Error from "./Error";
 
 import Home from "./Home";
+import SearchBar from "./SearchBar";
 import Shop from "./Shop";
 
 // Render the content area based on status
@@ -24,6 +25,9 @@ export default () => {
           </Route>
           <Route path="/products">
             <Shop />
+          </Route>
+          <Route path="/search">
+            <SearchBar />
           </Route>
         </>
       );
