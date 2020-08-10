@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React from "react";
+=======
+import React, { useState, useEffect } from "react";
+>>>>>>> b45de235706997f028fbdf0eed291f36b9faa8fd
 import styled from "styled-components";
 
 import Product from "./Product";
@@ -11,9 +15,26 @@ export default () => {
 
   return (
     <GridWrapper>
+<<<<<<< HEAD
       {items.map((item) => (
         <Product key={item.id} item={item} />
       ))}
+=======
+      {items.map((item) => {
+        return (
+          <Product
+            key={item.id}
+            imageSrc={item.imageSrc}
+            name={item.name}
+            price={item.price}
+            numInStock={item.numInStock}
+            category={item.category}
+            body_location={item.body_location}
+            companyId={item.companyId}
+          />
+        );
+      })}
+>>>>>>> b45de235706997f028fbdf0eed291f36b9faa8fd
     </GridWrapper>
   );
 };
