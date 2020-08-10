@@ -9,7 +9,7 @@ import Error from "./Error";
 import Home from "./Home";
 import Shop from "./Shop";
 
-// Render the content area based on status
+// Render the content area based on status and path
 export default () => {
   const {
     state: { status },

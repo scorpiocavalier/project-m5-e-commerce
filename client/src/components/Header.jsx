@@ -2,15 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import NavItem from "./NavItem";
-
 export default () => {
   return (
     <Wrapper>
       <StyledLink to="/">
         <h2>THE ARK PROJECT</h2>
       </StyledLink>
-      <NavItem />
     </Wrapper>
   );
 };
