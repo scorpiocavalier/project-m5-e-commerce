@@ -2,4 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import { ShopProvider } from './context/ShopContext'
+
+ReactDOM.render(
+  <ShopProvider>
+    <App />
+  </ShopProvider>,
+  document.getElementById("root")
+);
