@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 // import { TiDeleteOutline } from "react-icons/ti";
 import Suggestion from "./Suggestion";
-import { useShopContext } from "../context";
+import { useShopContext } from "../context/ShopContext";
 
 export default () => {
   const {
@@ -14,16 +14,14 @@ export default () => {
 
   const watch = useRef();
 
-  const matchedSuggestions = (searchValue) => {
-    if (searchValue.length > 1) {
-      return items.filter(({ name }) =>
-        name.toLowerCase().includes(searchValue.toLowerCase())
-      );
+  const matchedSuggestion = (watch) => {
+    if (watch.length > 1) {
+      return items.filter((item) => console.log(item.name));
     }
     return [];
   };
 
-  let listMatchedSuggestions = matchedSuggestions(userValue);
+  let listMatchedSuggestion = matchedSuggestion(watch);
 
   return (
     <>
@@ -34,12 +32,13 @@ export default () => {
           onChange={(ev) => {
             // if (!dropDown) setDropDown(true);
             setUserValue(ev.target.value);
+            console.log(userValue);
           }}
         ></InputData>
       </Wrapper>
-      {listMatchedSuggestions.length > 0 && (
+      {listMatchedSuggestion.length > 0 && (
         <List>
-          {listMatchedSuggestions.map((matchedSuggestion) => (
+          {listMatchedSuggestion.map((matchedSuggestion) => (
             <Suggestion
               ref={watch}
               key={matchedSuggestion.id}
