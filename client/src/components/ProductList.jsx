@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
 import Product from "./Product";
 import { useShopContext } from "../context/ShopContext";
@@ -9,7 +10,7 @@ export default () => {
   } = useShopContext();
 
   return (
-    <>
+    <GridWrapper>
       {items.map((item) => {
         return (
           <Product
@@ -24,6 +25,29 @@ export default () => {
           />
         );
       })}
-    </>
+    </GridWrapper>
   );
 };
+
+const GridWrapper = styled.div`
+  border: solid yellow 2px;
+  display: grid;
+  grid: auto / 1fr;
+  gap: 30px 30px;
+  padding: 30px;
+
+  @media (min-width: 768px) {
+    border: solid blue 2px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 900px) {
+    border: solid red 2px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 1200px) {
+    border: solid green 2px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+`;
