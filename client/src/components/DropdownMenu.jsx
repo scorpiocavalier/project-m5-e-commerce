@@ -5,6 +5,7 @@ import { CSSTransition } from "react-transition-group";
 import Icon from "react-icons-kit";
 import { logIn } from "react-icons-kit/feather/";
 import { shopping_cart, shop, arrow_left } from "react-icons-kit/ikons/";
+
 import "./Dropdown.css";
 
 export default () => {
@@ -86,13 +87,11 @@ export default () => {
 const Dropdown = styled.a`
   position: absolute;
   top: 64px;
-  width: 600px;
-  transform: translateX(-95%);
+  width: 775px;
+  transform: translateX(-92%);
   background-color: rgba(32, 48, 64, 0.95);
   padding: 1rem;
   overflow: hidden;
-  transition: 500ms;
-  border-radius: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;

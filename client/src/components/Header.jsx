@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import NavItem from "./NavItem";
+import NavList from "./NavList";
 
 export default () => {
   return (
@@ -11,6 +12,7 @@ export default () => {
         <h2>THE ARK PROJECT</h2>
       </StyledLink>
       <NavItem />
+      <NavList />
     </Wrapper>
   );
 };

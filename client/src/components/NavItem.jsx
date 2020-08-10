@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import DropdownMenu from "./DropdownMenu";
 
-import Icon from "react-icons-kit";
-import { circle_down } from "react-icons-kit/ikons/";
+import { GiHamburgerMenu } from "react-icons/gi";
 import "./Dropdown.css";
 
 export default () => {
@@ -13,7 +12,7 @@ export default () => {
     <Wrapper>
       <IconWrapper>
         <Btn onClick={() => setOpen(!open)}>
-          <Icon icon={circle_down} size={40} style={{ color: "white" }} />
+          <GiHamburgerMenu size={40} style={{ color: "white" }} />
         </Btn>
       </IconWrapper>
       {open && <DropdownMenu />}
@@ -22,7 +21,11 @@ export default () => {
 };
 
 //css styling
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`;
 
 const IconWrapper = styled.div`
   margin-right: 1rem;
