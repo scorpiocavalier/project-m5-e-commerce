@@ -26,9 +26,6 @@ app.use("/", express.static(__dirname + "/"));
 // Routes which should handle requests
 app.use("/products", productRoutes);
 
-//product route
-// app.get("/api/routes/products");
-
 // Error handling routes that do not exist
 app.use((req, res) => {
   res.status(404).json({
