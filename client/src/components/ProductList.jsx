@@ -1,26 +1,43 @@
 import React from "react";
+import styled from "styled-components";
 
 import Product from "./Product";
-import testItems from "../Test Data/test_items";
+import { useShopContext } from "../context/ShopContext";
 
 export default () => {
+  const {
+    state: { items },
+  } = useShopContext();
+
   return (
-    <>
-      {testItems.map((item) => {
-        return (
-          // console.log("Product List Level Company", testItems.companyId);
-          <Product
-            key={item.name}
-            imageSrc={item.imageSrc}
-            name={item.name}
-            price={item.price}
-            numInStock={item.numInStock}
-            category={item.category}
-            body_location={item.body_location}
-            companyId={item.companyId}
-          />
-        );
-      })}
-    </>
+    <GridWrapper>
+      {items.map((item) => (
+        <Product key={item.id} item={item} />
+      ))}
+    </GridWrapper>
   );
 };
+
+const GridWrapper = styled.div`
+  display: grid;
+  grid: auto / 1fr;
+  gap: 50px 30px;
+  padding: 30px;
+  margin: 30px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 1600px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: 1920px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+`;

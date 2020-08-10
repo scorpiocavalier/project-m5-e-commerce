@@ -5,7 +5,6 @@ import { CSSTransition } from "react-transition-group";
 import Icon from "react-icons-kit";
 import { logIn } from "react-icons-kit/feather/";
 import { shopping_cart, shop, arrow_left } from "react-icons-kit/ikons/";
-
 import "./Dropdown.css";
 
 export default () => {

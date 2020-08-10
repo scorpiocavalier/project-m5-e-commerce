@@ -1,48 +1,41 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-import CompanyInfo from "./CompanyInfo";
-import items from "../Test Data/test_items";
-
-/* Instead of displaying the quantity in stock, here is a function that mimics the functionality
+/*
+Instead of displaying the quantity in stock, here is a function that mimics the functionality
 of amazon, which just shows the user the minimum relevant info, ie: is it in or out of stock.
 I dont think the user actually cares how much stock there is, as long as there is more than 0.
-
-Arturo: I helped you simplify the method.
 */
-const checkInStock = (qty) => (qty > 0 ? "In Stock" : "Out of Stock");
-
-// Arturo: You should be sending a single item instead of the whole list.
-// checkInStock(items, 0);
+const InStock = (qty) => qty > 0;
 
 /*
 The Product component is taking props from the map in the product list component. The
 checkInStock function explaind in the comment above is used below.
 */
+export default ({ item }) => {
+  const { imageSrc, name, price, numInStock } = item;
 
-export default (props) => {
-  const {
-    imageSrc,
-    name,
-    price,
-    numInStock,
-    category,
-    body_location,
-    companyId,
-  } = props;
+  const available = numInStock > 0;
+  const availability = available ? "In stock" : "Out of stock";
 
   return (
-    <Wrapper>
-      {<Image src={`${imageSrc}`} alt={`${name}`} />}
+    <Card>
+      <ImageContainer>
+        <Image src={imageSrc} alt={name} />
+      </ImageContainer>
       <InfoWrapper>
-        <Name>{`${name}`}</Name>
-        <Price>Price: {`${price}`}</Price>
-        <Availability>{checkInStock(numInStock)}</Availability>
-        <Category>{`${category}`}</Category>
-        <BodyLocation>{`${body_location}`}</BodyLocation>
-        <CompanyInfo companyId={companyId} />
+        <Name>{name}</Name>
+        <PriceAvailability>
+          <Price>{price}</Price>
+          <Availability available={available}>{availability}</Availability>
+        </PriceAvailability>
+        <ActionWrapper>
+          <MoreInfo>More info</MoreInfo>
+          <AddToCart>Add to Cart</AddToCart>
+        </ActionWrapper>
       </InfoWrapper>
-    </Wrapper>
+    </Card>
   );
 };
 
@@ -50,21 +43,34 @@ export default (props) => {
 The product wrapper displays flex-direction column in order to acheive a card format for each
 item. It is clear that there is just not enough text info in the data for the img to be display
 inline with the text, as the image takes up much more room, and thus looks totally lopsided.
-
-Arturo: Make use of a grid system to display x number of cards/row based on window size.
-To make this work, you should probably make some changes at a higher level.
-Use the library & stickers workshops as a reference, if needed.
 */
 
-const Wrapper = styled.div`
+const Card = styled.div`
   display: flex;
   flex-direction: column;
-  border: blue solid 2px;
   align-items: center;
+  justify-self: center;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  width: 325px;
+  height: 500px;
+  padding: 30px;
+  text-align: center;
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const ImageContainer = styled.div`
+  width: 100%;
+  height: 60%;
+  padding: 10px;
 `;
 
 const Image = styled.img`
-  border: red solid 1px;
+  object-fit: contain;
+  height: 100%;
   max-width: 100%;
 `;
 
@@ -72,27 +78,44 @@ const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  height: 40%;
+  margin-top: 20px;
+  justify-content: space-between;
 `;
 
-/*
-Arturo: I'll let you style these.
-1. Create a Card look that has a fixed width other than the window width.
-2. Give two possible colors for the Availability.
-3. Maybe have category and body location on the same line.
-4. Have the company info only display the company name as a Link,
-which can open the url in a new tab without making them leave.
-*/
-const Name = styled.h2``;
-const Price = styled.p``;
-const Availability = styled.p``;
-const Category = styled.p``;
-const BodyLocation = styled.p``;
+const PriceAvailability = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
-/*
-img  name
-price
-numInStock
+const Name = styled.p`
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: 600;
+`;
+const Price = styled.p`
+  padding: 5px;
+  font-weight: bold;
+  font-size: 20px;
+`;
+const Availability = styled.p`
+  padding: 5px;
+  font-size: 20px;
+  color: ${(p) => (p.available ? "green" : "gray")};
+`;
 
-Items in{`${items[0].numInStock}`}
+const ActionWrapper = styled.div`
+  display: flex;
+`;
 
-*/
+const MoreInfo = styled.button`
+  width: 120px;
+  font-size: 18px;
+`;
+
+const AddToCart = styled(MoreInfo)`
+  &:hover {
+    background: green;
+  }
+`;
