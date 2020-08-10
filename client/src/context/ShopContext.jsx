@@ -38,8 +38,6 @@ export const ShopProvider = ({ children }) => {
     fetchData();
   }, []);
 
-  console.log(state);
-
   return (
     <ShopContext.Provider value={{ state, dispatch }}>
       {children}

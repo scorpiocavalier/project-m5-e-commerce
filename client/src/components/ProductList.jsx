@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import Product from "./Product";
@@ -11,43 +11,33 @@ export default () => {
 
   return (
     <GridWrapper>
-      {items.map((item) => {
-        return (
-          <Product
-            key={item.id}
-            imageSrc={item.imageSrc}
-            name={item.name}
-            price={item.price}
-            numInStock={item.numInStock}
-            category={item.category}
-            body_location={item.body_location}
-            companyId={item.companyId}
-          />
-        );
-      })}
+      {items.map((item) => (
+        <Product key={item.id} item={item} />
+      ))}
     </GridWrapper>
   );
 };
 
 const GridWrapper = styled.div`
-  border: solid yellow 2px;
   display: grid;
   grid: auto / 1fr;
-  gap: 30px 30px;
+  gap: 50px 30px;
   padding: 30px;
+  margin: 30px;
 
   @media (min-width: 768px) {
-    border: solid blue 2px;
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (min-width: 900px) {
-    border: solid red 2px;
+  @media (min-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (min-width: 1200px) {
-    border: solid green 2px;
+  @media (min-width: 1600px) {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: 1920px) {
+    grid-template-columns: repeat(5, 1fr);
   }
 `;
