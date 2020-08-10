@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import verticalImage from "../assets/cover/cover-brown-vertical.jpg";
-import horizontalImage from "../assets/cover/cover-black-horizontal.jpg";
+import horizontalImage from "../assets/cover/cover-white-horizontal.jpg";
 
 export default () => {
   const [image, setImage] = useState({
