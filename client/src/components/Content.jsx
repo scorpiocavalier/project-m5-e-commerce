@@ -12,7 +12,7 @@ import Shop from "./Shop";
 import Cart from "./Cart";
 import PhotoGallary from "./PhotoGallary";
 
-// Render the content area based on status
+// Render the content area based on status and path
 export default () => {
   const {
     state: { status },

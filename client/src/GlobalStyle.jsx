@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
+    margin: 0;
   }
 
   li {
