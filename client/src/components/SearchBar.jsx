@@ -9,6 +9,7 @@ export default () => {
   } = useShopContext();
   const [userValue, setUserValue] = useState("");
   const [dropDown, setDropDown] = useState(false);
+  const [selectedSuggestion, setSelectedSuggestion] = useState(0);
 
   const matchedSuggestion = (userInput) => {
     if (userInput.length > 1) {
@@ -30,6 +31,25 @@ export default () => {
           onChange={(ev) => {
             if (!dropDown) setDropDown(true);
             setUserValue(ev.target.value);
+          }}
+          onKeyDown={(ev) => {
+            switch (ev.key) {
+              case "ArrowUp": {
+                if (selectedSuggestion - 1 > -1) {
+                  setSelectedSuggestion(selectedSuggestion - 1);
+                }
+                return;
+              }
+              case "ArrowDown": {
+                if (selectedSuggestion + 1 < listMatchedSuggestion.length) {
+                  setSelectedSuggestion(selectedSuggestion + 1);
+                }
+                return;
+              }
+              default: {
+                return;
+              }
+            }
           }}
         />
       </Wrapper>

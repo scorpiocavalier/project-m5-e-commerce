@@ -9,6 +9,8 @@ import Error from "./Error";
 import Home from "./Home";
 import SearchBar from "./SearchBar";
 import Shop from "./Shop";
+import Cart from "./Cart";
+import PhotoGallary from "./PhotoGallary";
 
 // Render the content area based on status
 export default () => {
@@ -28,6 +30,12 @@ export default () => {
           </Route>
           <Route path="/search">
             <SearchBar />
+          </Route>
+          <Route path="/cart">
+            <Cart />
+          </Route>
+          <Route path="/photo">
+            <PhotoGallary />
           </Route>
         </>
       );
