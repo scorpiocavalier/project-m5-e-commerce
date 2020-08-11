@@ -1,13 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-
-/*
-Instead of displaying the quantity in stock, here is a function that mimics the functionality
-of amazon, which just shows the user the minimum relevant info, ie: is it in or out of stock.
-I dont think the user actually cares how much stock there is, as long as there is more than 0.
-*/
-const InStock = (qty) => qty > 0;
 
 /*
 The Product component is taking props from the map in the product list component. The
