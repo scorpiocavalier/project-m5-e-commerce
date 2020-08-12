@@ -9,6 +9,7 @@ const initialState = {
   status: STATUS.LOADING,
   items: null,
   companies: null,
+  cart: [],
 };
 
 // Custom hook for providing the ShopContext

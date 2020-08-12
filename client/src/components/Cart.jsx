@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default () => {
   const {
-    state: { items },
+    state: { items, cart },
   } = useShopContext();
 
   const item = items.find((item) => item.id === 6543);
