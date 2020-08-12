@@ -7,8 +7,7 @@ export default () => {
   const {
     state: { items, cart },
   } = useShopContext();
-
-  const item = items.find((item) => item.id === 6543);
+  console.log("cart", cart);
 
   return (
     <>
@@ -24,26 +23,32 @@ export default () => {
             </Quantity>
           </ProductDetails>
           <ItemList>
-            <Product>
-              <Img src={item.imageSrc} />
-              <ProductList>
-                <ProductName>{item.name}</ProductName>
-                <ProductId>Id:{item.id}</ProductId>
-              </ProductList>
-            </Product>
-            <Quantity>
-              <ItemQuant>
-                <select>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </select>
-                <Btn>Remove</Btn>
-              </ItemQuant>
-              <ItemPrice>$54</ItemPrice>
-              <ItemTotal>$54</ItemTotal>
-            </Quantity>
+            {cart.map((item) => {
+              return (
+                <>
+                  <Product>
+                    <Img src={item.imageSrc} />
+                    <ProductList>
+                      <ProductName>{item.name}</ProductName>
+                      <ProductId>Id:{item.id}</ProductId>
+                    </ProductList>
+                  </Product>
+                  <Quantity>
+                    <ItemQuant>
+                      <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                      </select>
+                      <Btn>Remove</Btn>
+                    </ItemQuant>
+                    <ItemPrice>$54</ItemPrice>
+                    <ItemTotal>$54</ItemTotal>
+                  </Quantity>
+                </>
+              );
+            })}
           </ItemList>
           <Btn>
             <Link to="/products" style={{ color: "black" }}>
