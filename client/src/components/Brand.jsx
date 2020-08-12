@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import ArkLogo from "../../assets/logo/ark-logo.png";
+import ArkLogo from "../assets/logo/ark-logo.png";
 
 export default () => {
   return (
@@ -16,7 +16,6 @@ export default () => {
 const WrapperLink = styled(Link)`
   display: flex;
   align-items: center;
-  width: 50%;
   height: 100%;
   color: #fff;
 

@@ -2,14 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 import Cover from "./Cover";
-import Dummy from "./Dummy";
+import CategoryGallery from "./CategoryGallery";
 
 export default () => {
   return (
     <Wrapper>
       <Cover />
-      <Dummy />
-      <Dummy />
+      <CategoryGallery />
     </Wrapper>
   );
 };

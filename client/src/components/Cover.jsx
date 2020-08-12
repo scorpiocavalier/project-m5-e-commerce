@@ -12,7 +12,8 @@ export default () => {
 };
 
 const Wrapper = styled.div`
-  display: flex;
+  position: relative;
+  top: -7vh;
   width: 100%;
   height: 100%;
 `;

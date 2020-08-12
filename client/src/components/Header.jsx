@@ -19,5 +19,4 @@ const Navbar = styled.nav`
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  background: transparent;
 `;

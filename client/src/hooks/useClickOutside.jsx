@@ -11,5 +11,5 @@ export default (ref, setActive) => {
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [ref]);
+  }, [ref, setActive]);
 };

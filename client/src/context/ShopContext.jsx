@@ -8,6 +8,8 @@ const ShopContext = createContext();
 const initialState = {
   status: STATUS.LOADING,
   items: null,
+  companies: null,
+  cart: [],
 };
 
 // Custom hook for providing the ShopContext
@@ -20,12 +22,16 @@ export const ShopProvider = ({ children }) => {
   const fetchData = async () => {
     try {
       // Fetch the list of items from the API
-      const res = await fetch(`/products`);
+      let res = await fetch(`/products`);
       const items = await res.json();
+      // Fetch the list of companies from the API
+      res = await fetch(`/companies`);
+      const companies = await res.json();
       // Create a new state
       const newState = {
         status: STATUS.IDLE,
         items,
+        companies
       };
       // Pass the new state to the dispatch
       dispatch(setState(newState));
