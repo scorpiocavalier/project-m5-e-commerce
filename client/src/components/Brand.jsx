@@ -16,7 +16,6 @@ export default () => {
 const WrapperLink = styled(Link)`
   display: flex;
   align-items: center;
-  width: 50%;
   height: 100%;
   color: #fff;
 

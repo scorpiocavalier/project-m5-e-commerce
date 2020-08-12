@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   @media (min-width: 768px) {
     display: flex;
     justify-content: flex-end;
-    width: 50%;
+    align-items: center;
     height: 100%;
   }
 `;
