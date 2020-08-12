@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import styled from "styled-components";
 
 import GlobalStyle from "./GlobalStyle";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
 
@@ -15,7 +15,7 @@ export default () => {
       <Grid>
         <GlobalStyle />
 
-        <HeaderWrapper pathname={"/"}>
+        <HeaderWrapper>
           <Header />
         </HeaderWrapper>
 
@@ -40,19 +40,15 @@ const Grid = styled.div`
 `;
 
 const HeaderWrapper = styled.div`
-  width: 100%;
-  height: 5vh;
-  background: rgba(32, 48, 64, 0);
-  margin-top: 20px;
-  position: ${(p) => (p.pathname === "/" ? "fixed" : "relative")};
+  position: fixed;
   top: 0;
+  padding: 1vh 15px;
+  width: 100%;
+  height: 7vh;
+  background: rgba(32, 48, 64, 0);
 
   @media (min-width: 768px) {
-    grid-template-rows: auto 6vh;
-  }
-
-  @media (min-width: 1200px) {
-    grid-template-rows: auto 7vh;
+    height: 8vh;
   }
 `;
 

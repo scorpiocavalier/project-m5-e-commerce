@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { useShopContext } from "../context/ShopContext";
 import { STATUS } from "../context/actions";
@@ -11,6 +11,7 @@ import SearchBar from "./SearchBar";
 import Shop from "./Shop";
 import Cart from "./Cart";
 import PhotoGallary from "./PhotoGallary";
+import ProductDetails from "./ProductDetails";
 
 // Render the content area based on status and path
 export default () => {
@@ -21,11 +22,11 @@ export default () => {
   switch (status) {
     case STATUS.IDLE:
       return (
-        <>
+        <Switch>
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/products">
+          <Route exact path="/products">
             <Shop />
           </Route>
           <Route path="/search">
@@ -37,7 +38,11 @@ export default () => {
           <Route path="/photo">
             <PhotoGallary />
           </Route>
-        </>
+
+          <Route path="/products/:productId">
+            <ProductDetails />
+          </Route>
+        </Switch>
       );
     case STATUS.LOADING:
       return <Spinner />;

@@ -24,19 +24,15 @@ const GridWrapper = styled.div`
   gap: 50px 30px;
   padding: 30px;
   margin: 30px;
-
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
-
   @media (min-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
   }
-
   @media (min-width: 1600px) {
     grid-template-columns: repeat(4, 1fr);
   }
-
   @media (min-width: 1920px) {
     grid-template-columns: repeat(5, 1fr);
   }

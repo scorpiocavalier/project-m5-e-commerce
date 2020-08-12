@@ -1,6 +1,37 @@
 import React from "react";
 import styled from "styled-components";
 
+// Image ContainerComponent
+export const ImageContent = ({ src, alt }) => {
+  return (
+    <ImageContainer>
+      <Image src={src} alt={alt} />
+    </ImageContainer>
+  );
+};
+
+export const ProductName = ({ children }) => {
+  return <Name>{children}</Name>;
+};
+export const ProductPrice = ({ children }) => {
+  return <Price>{children}</Price>;
+};
+export const ProductAvailability = ({ children, available }) => {
+  return <Availability available={available}>{children}</Availability>;
+};
+export const ProductMoreInfo = ({ children }) => {
+  return <MoreInfo>{children}</MoreInfo>;
+};
+export const ProductAddToCart = ({ children }) => {
+  return <AddToCart>{children}</AddToCart>;
+};
+
+export const checkAvailability = (stockQty) => {
+  const available = stockQty > 0;
+  const availability = available ? "In stock" : "Out of stock";
+  return { available, availability };
+};
+
 /*
 The Product component is taking props from the map in the product list component. The
 checkInStock function explaind in the comment above is used below.
@@ -8,23 +39,23 @@ checkInStock function explaind in the comment above is used below.
 export default ({ item }) => {
   const { imageSrc, name, price, numInStock } = item;
 
-  const available = numInStock > 0;
-  const availability = available ? "In stock" : "Out of stock";
+  const { available, availability } = checkAvailability(numInStock);
 
   return (
     <Card>
-      <ImageContainer>
-        <Image src={imageSrc} alt={name} />
-      </ImageContainer>
+      <ImageContent src={imageSrc} alt={name} />
+      <Divider />
       <InfoWrapper>
-        <Name>{name}</Name>
+        <ProductName>{name}</ProductName>
         <PriceAvailability>
-          <Price>{price}</Price>
-          <Availability available={available}>{availability}</Availability>
+          <ProductPrice>{price}</ProductPrice>
+          <ProductAvailability available={available}>
+            {availability}
+          </ProductAvailability>
         </PriceAvailability>
         <ActionWrapper>
-          <MoreInfo>More info</MoreInfo>
-          <AddToCart>Add to Cart</AddToCart>
+          <ProductMoreInfo>More info</ProductMoreInfo>
+          <ProductAddToCart>Add to Cart</ProductAddToCart>
         </ActionWrapper>
       </InfoWrapper>
     </Card>
@@ -66,7 +97,14 @@ const Image = styled.img`
   max-width: 100%;
 `;
 
+const Divider = styled.div`
+  border-bottom: 1px solid lightgrey;
+  width: 90%;
+`;
+
 const InfoWrapper = styled.div`
+  width: 90%;
+  height: 55%;
   display: flex;
   flex-direction: column;
   align-items: center;
