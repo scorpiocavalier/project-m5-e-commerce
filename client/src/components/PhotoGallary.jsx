@@ -1,5 +1,5 @@
 import React from "react";
-import items from "../Test Data/test_items";
+import items from "../assets/cover/photos";
 import styled from "styled-components";
 import Photos from "./Photos";
 

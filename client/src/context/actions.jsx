@@ -1,8 +1,8 @@
 export const STATUS = {
-  LOADING: 'loading',
-  IDLE: 'idle',
-  ERROR: 'error'
-}
+  LOADING: "loading",
+  IDLE: "idle",
+  ERROR: "error",
+};
 
 export const ACTIONS = {
   SET_STATE: "set-state",

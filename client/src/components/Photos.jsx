@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 export default ({ id, size, title, imageSrc }) => {
-  console.log(id);
   return (
     <Wrapper size={size}>
       <ImageWrapper src={imageSrc} />
