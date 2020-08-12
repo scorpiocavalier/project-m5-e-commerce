@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-import companies from "../Test Data/companies";
+import { useShopContext } from "../context/ShopContext";
 
 export default ({ companyId }) => {
+  const {
+    state: { companies },
+  } = useShopContext();
+
   const productCompany = companies.find((company) => {
     return company.id === companyId;
   });

@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import useClickOutside from "../../hooks/useClickOutside";
+import useClickOutside from "../hooks/useClickOutside";
 
 export default () => {
   const [active, setActive] = useState(false);
@@ -17,7 +17,7 @@ export default () => {
         <BurgerLine2 active={active} />
         <BurgerLine3 active={active} />
       </BurgerMenu>
-      <NavLinks active={active}>
+      <NavLinks onClick={toggleMenu} active={active}>
         <DropdownLink to="/products">Shop</DropdownLink>
         <DropdownLink to="/cart">Cart</DropdownLink>
         <DropdownLink to="/sign-in">Sign In</DropdownLink>

@@ -8,6 +8,8 @@ export default () => {
     state: { items },
   } = useShopContext();
 
+  const item = items.find((item) => item.id === 6543);
+
   return (
     <>
       <MainWrapper>
@@ -23,19 +25,11 @@ export default () => {
           </ProductDetails>
           <ItemList>
             <Product>
-              {items.map((item) => {
-                if (item.id === 6543) {
-                  return (
-                    <>
-                      <Img src={item.imageSrc} />
-                      <ProductList>
-                        <ProductName>{item.name}</ProductName>
-                        <ProductId>Id:{item.id}</ProductId>
-                      </ProductList>
-                    </>
-                  );
-                }
-              })}
+              <Img src={item.imageSrc} />
+              <ProductList>
+                <ProductName>{item.name}</ProductName>
+                <ProductId>Id:{item.id}</ProductId>
+              </ProductList>
             </Product>
             <Quantity>
               <ItemQuant>
@@ -108,8 +102,6 @@ const Quantity = styled.span`
   display: flex;
   flex-direction: row;
 `;
-
-const Price = styled.span``;
 
 const Img = styled.img`
   margin: 1rem;
