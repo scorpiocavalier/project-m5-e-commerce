@@ -8,6 +8,7 @@ const PORT = 4000;
 
 // Prepended routes
 const productRoutes = require("./api/routes/products");
+const companyRoutes = require("./api/routes/companies");
 
 // Console logging requests with status
 app.use(morgan("dev"));
@@ -25,6 +26,7 @@ app.use("/", express.static(__dirname + "/"));
 
 // Routes which should handle requests
 app.use("/products", productRoutes);
+app.use("/companies", companyRoutes);
 
 // Error handling routes that do not exist
 app.use((req, res) => {

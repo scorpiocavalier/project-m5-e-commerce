@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import {
-  ImageContent,
-  ProductName,
-  ProductPrice,
-  ProductAvailability,
-  ProductMoreInfo,
-  ProductAddToCart,
-  checkAvailability,
-} from "./Product";
-import ComparePrice from "./ComparePrice";
 import { useParams } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { starFull } from "react-icons-kit/icomoon/starFull";
 import { starHalf } from "react-icons-kit/icomoon/starHalf";
+import styled from "styled-components";
+
+import ComparePrice from "./ComparePrice";
+import {
+  ProductName,
+  ProductAvailability,
+  ProductAddToCart,
+  checkAvailability,
+  // ImageContent,
+  // ProductPrice,
+  // ProductMoreInfo,
+} from "./Product";
 
 export default function ProductDetails() {
   const [item, setItem] = useState(null);
@@ -26,7 +27,7 @@ export default function ProductDetails() {
         console.log("data", data);
         setItem(data);
       });
-  }, []);
+  }, [productId]);
 
   console.log("item", item);
 
@@ -296,7 +297,7 @@ const GridWrapper = styled.div`
 //   transition: 0.3s;
 // `;
 
-/* 
+/*
 @media (min-width: 768px) {
   }
   @media (min-width: 1200px) {

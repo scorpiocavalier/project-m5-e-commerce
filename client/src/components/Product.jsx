@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+import { ACTIONS } from "../context/actions";
+import { useShopContext } from "../context/ShopContext";
+
 // Image ContainerComponent
 export const ImageContent = ({ src, alt }) => {
   return (
@@ -22,8 +25,8 @@ export const ProductAvailability = ({ children, available }) => {
 export const ProductMoreInfo = ({ children }) => {
   return <MoreInfo>{children}</MoreInfo>;
 };
-export const ProductAddToCart = ({ children }) => {
-  return <AddToCart>{children}</AddToCart>;
+export const ProductAddToCart = ({ children, handleAddToCart }) => {
+  return <AddToCart onclick={handleAddToCart}>{children}</AddToCart>;
 };
 
 export const checkAvailability = (stockQty) => {
@@ -37,9 +40,13 @@ The Product component is taking props from the map in the product list component
 checkInStock function explaind in the comment above is used below.
 */
 export default ({ item }) => {
-  const { imageSrc, name, price, numInStock } = item;
+  const { dispatch } = useShopContext();
+
+  const { id, imageSrc, name, price, numInStock } = item;
 
   const { available, availability } = checkAvailability(numInStock);
+
+  const handleAddToCart = () => dispatch(ACTIONS.ADD_ITEM_TO_CART(id));
 
   return (
     <Card>
@@ -55,7 +62,9 @@ export default ({ item }) => {
         </PriceAvailability>
         <ActionWrapper>
           <ProductMoreInfo>More info</ProductMoreInfo>
-          <ProductAddToCart>Add to Cart</ProductAddToCart>
+          <ProductAddToCart handleAddToCart={handleAddToCart}>
+            Add to Cart
+          </ProductAddToCart>
         </ActionWrapper>
       </InfoWrapper>
     </Card>
