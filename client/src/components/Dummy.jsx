@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
+import useIntersectionObserver from "../hooks/useIntersectionObserver";
+
 export default () => {
-  return <SomeComponent>Some Component</SomeComponent>;
+  const targetRef = useRef();
+  useIntersectionObserver(targetRef);
+
+  return <SomeComponent ref={targetRef}>Some Component</SomeComponent>;
 };
 
 const SomeComponent = styled.div`

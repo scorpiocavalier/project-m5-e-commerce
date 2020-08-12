@@ -8,7 +8,7 @@ export default () => {
   return (
     <Wrapper>
       <Cover />
-      <Dummy className="dummy-1" />
+      <Dummy />
       <Dummy />
     </Wrapper>
   );
