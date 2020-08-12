@@ -15,7 +15,7 @@ export default () => {
       <Grid>
         <GlobalStyle />
 
-        <HeaderWrapper>
+        <HeaderWrapper pathname={"/"}>
           <Header />
         </HeaderWrapper>
 
@@ -33,17 +33,27 @@ export default () => {
 
 const Grid = styled.div`
   display: grid;
-  grid: 8vh auto 8vh / 1fr;
+  grid: auto 5vh / 1fr;
   grid-template-areas:
-    "header"
     "content"
     "footer";
 `;
 
 const HeaderWrapper = styled.div`
-  grid-area: header;
-  height: 100%;
-  background: rgba(32, 48, 64, 0.95);
+  width: 100%;
+  height: 5vh;
+  background: rgba(32, 48, 64, 0);
+  margin-top: 20px;
+  position: ${(p) => (p.pathname === "/" ? "fixed" : "relative")};
+  top: 0;
+
+  @media (min-width: 768px) {
+    grid-template-rows: auto 6vh;
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-rows: auto 7vh;
+  }
 `;
 
 const ContentWrapper = styled.div`

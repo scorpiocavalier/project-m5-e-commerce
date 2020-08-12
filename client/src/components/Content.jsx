@@ -10,7 +10,7 @@ import Home from "./Home";
 import Shop from "./Shop";
 import ProductDetails from "./ProductDetails";
 
-// Render the content area based on status
+// Render the content area based on status and path
 export default () => {
   const {
     state: { status },
