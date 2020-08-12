@@ -11,7 +11,7 @@ export default () => {
   } = useShopContext();
   console.log("items", items[0].category);
 
-  // items.filter()
+  // b
 
   return (
     <>
