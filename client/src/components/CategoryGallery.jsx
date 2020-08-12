@@ -1,13 +1,13 @@
 import React from "react";
-import items from "../assets/cover/photos";
+import categories from "../assets/categories";
 import styled from "styled-components";
 import Photos from "./Photos";
 
 export default () => {
   return (
     <Wrapper>
-      {items.map((item) => (
-        <Photos key={item.id} imageSrc={item.imageSrc} title={item.title} />
+      {categories.map(({id, imageSrc, title}) => (
+        <Photos key={id} imageSrc={imageSrc} title={title} />
       ))}
     </Wrapper>
   );
