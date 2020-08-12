@@ -10,7 +10,6 @@ import Home from "./Home";
 import SearchBar from "./SearchBar";
 import Shop from "./Shop";
 import Cart from "./Cart";
-import PhotoGallery from "./PhotoGallery";
 import ProductDetails from "./ProductDetails";
 
 // Render the content area based on status and path
@@ -34,9 +33,6 @@ export default () => {
           </Route>
           <Route path="/cart">
             <Cart />
-          </Route>
-          <Route path="/photo">
-            <PhotoGallery />
           </Route>
 
           <Route path="/products/:productId">

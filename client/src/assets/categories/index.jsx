@@ -6,7 +6,7 @@ import industrial from "./industrial.jpg";
 import pets from "./pets.jpg";
 import lifestyle from "./lifestyle.jpg";
 
-const items = [
+const categories = [
   {
     id: 1,
     title: "Fitness",
@@ -53,4 +53,4 @@ const items = [
   },
 ];
 
-export default items;
+export default categories;
