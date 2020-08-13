@@ -13,7 +13,7 @@ export const shopReducer = (state, action) => {
       return { ...state, cart: state.cart };
     case ACTIONS.REMOVE_ITEM_FROM_CART:
       const newState = { ...state };
-      delete new [action.payload.itemId]();
+      delete new action.payload.itemId();
       return newState;
     default:
       return state;

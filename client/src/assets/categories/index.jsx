@@ -5,6 +5,7 @@ import health from "./health.jpg";
 import industrial from "./industrial.jpg";
 import pets from "./pets.jpg";
 import lifestyle from "./lifestyle.jpg";
+import main from "./maincategory.jpg";
 
 const categories = [
   {
@@ -50,6 +51,12 @@ const categories = [
     title: "Pets and Animals",
 
     imageSrc: pets,
+  },
+  {
+    id: 8,
+    size: "large",
+    title: "Categories",
+    imageSrc: main,
   },
 ];
 

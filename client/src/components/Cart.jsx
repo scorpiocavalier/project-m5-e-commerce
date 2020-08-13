@@ -258,7 +258,11 @@ const CardOrder = styled.span`
   justify-content: space-between;
 `;
 
-const CardTotal = styled.span``;
+const CardTotal = styled.span`
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+`;
 
 const CardBtn = styled.button`
   font-size: 1.1rem;
