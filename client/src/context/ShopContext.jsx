@@ -2,7 +2,6 @@ import React, { createContext, useContext, useReducer, useEffect } from "react";
 
 import { STATUS, setState } from "./actions";
 import { shopReducer } from "./reducers";
-import firebase from "../firebase/firebase";
 
 // Create the shop context and initial state
 const ShopContext = createContext();
@@ -24,21 +23,11 @@ export const ShopProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         // Fetch the list of items from the API
-        // let res = await fetch(`/products`);
-        // const items = await res.json();
+        let res = await fetch(`/products`);
+        const items = await res.json();
         // Fetch the list of companies from the API
-        // res = await fetch(`/companies`);
-        // const companies = await res.json();
-
-        const database = firebase.database();
-        const itemsRef = database.ref('items');
-        const companiesRef = database.ref('companies');
-
-        const itemsSnapshot = await itemsRef.once('value');
-        const items = await itemsSnapshot.val() || null;
-
-        const companiesSnapshot = await companiesRef.once('value');
-        const companies = await companiesSnapshot.val() || null;
+        res = await fetch(`/companies`);
+        const companies = await res.json();
 
         // Create a new state
         const newState = {
