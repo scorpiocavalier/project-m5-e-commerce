@@ -11,6 +11,10 @@ export const shopReducer = (state, action) => {
       const item = state.items.find((item) => item.id === itemId);
       state.cart.push(item);
       return { ...state, cart: state.cart };
+    case ACTIONS.REMOVE_ITEM_FROM_CART:
+      const newState = { ...state };
+      delete new [action.payload.itemId]();
+      return newState;
     default:
       return state;
   }

@@ -151,6 +151,7 @@ const ActionWrapper = styled.div`
 const MoreInfo = styled.button`
   width: 120px;
   font-size: 18px;
+  cursor: pointer;
 `;
 
 const AddToCart = styled(MoreInfo)`
