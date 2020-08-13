@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { useShopContext } from "../context/ShopContext";
@@ -6,16 +6,30 @@ import { useShopContext } from "../context/ShopContext";
 export default function Filter() {
   const {
     state: { items },
+    category,
+    setCategory,
   } = useShopContext();
+
+  const handleSelect = (e) => setCategory(e.target.value);
+
+  // Fitness, Medical, Lifestyle, Entertainment, Industrial, Gaming, Pets and Animals
 
   return (
     <ButtonDiv>
       <label for="categories">Select a category</label>
-      <CategoryFilter name="categories" id="categories">
+      <CategoryFilter
+        onChange={(e) => handleSelect(e)}
+        name="categories"
+        id="categories"
+      >
+        <option value="">All</option>
         <option value="Fitness">Fitness</option>
+        <option value="Medical">Medical</option>
+        <option value="Lifestyle">Lifestyle</option>
+        <option value="Entertainment">Entertainment</option>
+        <option value="Industrial">Industrial</option>
         <option value="Gaming">Gaming</option>
-        <option value="Health">Health</option>
-        <option value="Pets">Pets</option>
+        <option value="Pets and Animals">Pets and Animals</option>
       </CategoryFilter>
     </ButtonDiv>
   );

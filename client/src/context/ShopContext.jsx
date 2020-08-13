@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useReducer, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useState,
+} from "react";
 
 import { STATUS, setState } from "./actions";
 import { shopReducer } from "./reducers";
@@ -11,6 +17,7 @@ const initialState = {
   items: null,
   companies: null,
   cart: [],
+  itemIds: [],
 };
 
 // Custom hook for providing the ShopContext
@@ -19,7 +26,8 @@ export const useShopContext = () => useContext(ShopContext);
 // This context provider will wrap the app
 export const ShopProvider = ({ children }) => {
   const [state, dispatch] = useReducer(shopReducer, initialState);
-
+  const [category, setCategory] = useState(null);
+  console.log("categories", category);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,21 +39,30 @@ export const ShopProvider = ({ children }) => {
         // const companies = await res.json();
 
         const database = firebase.database();
-        const itemsRef = database.ref('items');
-        const companiesRef = database.ref('companies');
+        const itemsRef = database.ref("items");
+        const companiesRef = database.ref("companies");
 
-        const itemsSnapshot = await itemsRef.once('value');
-        const items = await itemsSnapshot.val() || null;
+        const itemsSnapshot = await itemsRef.once("value");
+        const items = (await itemsSnapshot.val()) || null;
 
-        const companiesSnapshot = await companiesRef.once('value');
-        const companies = await companiesSnapshot.val() || null;
+        const companiesSnapshot = await companiesRef.once("value");
+        const companies = (await companiesSnapshot.val()) || null;
 
+        let itemIds = Object.keys(items);
+
+        if (category) {
+          itemIds = itemIds.filter((itemId) => {
+            return items[itemId].category === category;
+          });
+        }
         // Create a new state
         const newState = {
           status: STATUS.IDLE,
           items,
           companies,
+          itemIds,
         };
+
         // Pass the new state to the dispatch
         dispatch(setState(newState));
       } catch (error) {
@@ -53,10 +70,10 @@ export const ShopProvider = ({ children }) => {
       }
     };
     fetchData();
-  }, []);
+  }, [category]);
 
   return (
-    <ShopContext.Provider value={{ state, dispatch }}>
+    <ShopContext.Provider value={{ state, dispatch, category, setCategory }}>
       {children}
     </ShopContext.Provider>
   );

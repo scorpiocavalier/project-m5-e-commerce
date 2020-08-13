@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Filter from "./Filter";
 
@@ -7,11 +7,8 @@ import { useShopContext } from "../context/ShopContext";
 
 export default () => {
   const {
-    state: { items },
+    state: { items, itemIds },
   } = useShopContext();
-  console.log("items", items[0].category);
-
-  // b
 
   return (
     <>
@@ -19,9 +16,10 @@ export default () => {
         <Filter>Choose A Category</Filter>
       </FilterDiv>
       <GridWrapper>
-        {items.map((item) => (
-          <Product key={item.id} item={item} />
-        ))}
+        {itemIds.map((itemId) => {
+          const item = items[itemId];
+          return <Product key={item.id} item={item} />;
+        })}
       </GridWrapper>
     </>
   );
