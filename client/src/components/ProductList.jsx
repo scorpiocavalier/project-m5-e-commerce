@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Filter from "./Filter";
 
@@ -6,9 +6,18 @@ import Product from "./Product";
 import { useShopContext } from "../context/ShopContext";
 
 export default () => {
-  const {
-    state: { items, itemIds },
-  } = useShopContext();
+  const { state } = useShopContext();
+  const { items, category, itemIds } = state;
+  const [filteredIds, setFilteredIds] = useState(null);
+
+  // Filter the ids that correspond to the current category.
+  useEffect(() => {
+    category === "All"
+      ? setFilteredIds(itemIds)
+      : setFilteredIds(
+          itemIds.filter((itemId) => items[itemId].category === category)
+        );
+  }, [itemIds, category]);
 
   return (
     <>
@@ -16,10 +25,11 @@ export default () => {
         <Filter>Choose A Category</Filter>
       </FilterDiv>
       <GridWrapper>
-        {itemIds.map((itemId) => {
-          const item = items[itemId];
-          return <Product key={item.id} item={item} />;
-        })}
+        {filteredIds &&
+          filteredIds.map((itemId) => {
+            const item = items[itemId];
+            return <Product key={item.id} item={item} />;
+          })}
       </GridWrapper>
     </>
   );
@@ -27,10 +37,8 @@ export default () => {
 
 const FilterDiv = styled.div`
   border-bottom: 1px solid #dee0df;
-  /* border: solid green 2px; */
 
   height: 150px;
-  /* width: 100%; */
 
   display: grid;
   grid: auto / 1fr;
@@ -59,11 +67,10 @@ const FilterDiv = styled.div`
 const GridWrapper = styled.div`
   display: grid;
   grid: auto / 1fr;
-  /* grid-template-columns: 1fr;
-  grid-template-rows: 50px auto; */
   gap: 50px 30px;
   padding: 30px;
   margin: 30px;
+
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
