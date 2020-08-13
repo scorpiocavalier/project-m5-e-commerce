@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { ACTIONS } from "../context/actions";
+import { addItemToCart } from "../context/actions";
 import { useShopContext } from "../context/ShopContext";
 
 // Image ContainerComponent
@@ -26,7 +26,7 @@ export const ProductMoreInfo = ({ children }) => {
   return <MoreInfo>{children}</MoreInfo>;
 };
 export const ProductAddToCart = ({ children, handleAddToCart }) => {
-  return <AddToCart onclick={handleAddToCart}>{children}</AddToCart>;
+  return <AddToCart onClick={handleAddToCart}>{children}</AddToCart>;
 };
 
 export const checkAvailability = (stockQty) => {
@@ -46,7 +46,7 @@ export default ({ item }) => {
 
   const { available, availability } = checkAvailability(numInStock);
 
-  const handleAddToCart = () => dispatch(ACTIONS.ADD_ITEM_TO_CART(id));
+  const handleAddToCart = () => dispatch(addItemToCart(id));
 
   return (
     <Card>
@@ -151,6 +151,7 @@ const ActionWrapper = styled.div`
 const MoreInfo = styled.button`
   width: 120px;
   font-size: 18px;
+  cursor: pointer;
 `;
 
 const AddToCart = styled(MoreInfo)`

@@ -5,9 +5,8 @@ import health from "./health.jpg";
 import industrial from "./industrial.jpg";
 import pets from "./pets.jpg";
 import lifestyle from "./lifestyle.jpg";
-import main from "./maincategory.jpg";
 
-const categories = [
+const items = [
   {
     id: 1,
     title: "Fitness",
@@ -52,12 +51,6 @@ const categories = [
 
     imageSrc: pets,
   },
-  {
-    id: 8,
-    size: "large",
-    title: "Categories",
-    imageSrc: main,
-  },
 ];
 
-export default categories;
+export default items;
