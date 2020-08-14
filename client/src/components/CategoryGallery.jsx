@@ -22,17 +22,26 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 20px 10%;
+  padding: 0 10%;
+  margin-bottom: 50px;
 `
 
 const GalleryWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid: auto / 1fr;
+  gap: 30px 30px;
   width: 100%;
+
+  @media (min-width: 768px) {
+    grid: auto / repeat(2, 1fr);
+  }
+
+  @media (min-width: 1600px) {
+    grid: auto / repeat(4, 1fr);
+  }
 `;
 
 const Header = styled.h2`
   font-size: 32px;
-  padding: 30px 0;
+  padding: 80px 0;
 `

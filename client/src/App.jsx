@@ -31,7 +31,7 @@ export default () => {
 
 const Grid = styled.div`
   display: grid;
-  grid: 7vh auto 5vh / 1fr;
+  grid: 7vh auto 6vh / 1fr;
   grid-template-areas:
     "header"
     "content"
