@@ -1,70 +1,135 @@
 import React from "react";
 import styled from "styled-components";
-import { useShopContext } from "../context/ShopContext";
 import { Link } from "react-router-dom";
+import { FaOpencart } from "react-icons/fa";
+
+import { useShopContext } from "../context/ShopContext";
+import { STATUS, removeItemFromCart } from "../context/actions";
 
 export default () => {
-  const {
-    state: { items, cart },
-  } = useShopContext();
+  const { state, dispatch } = useShopContext();
+  const { status, cart } = state;
 
-  const item = items.find((item) => item.id === 6543);
+  console.log("cart", cart);
+
+  // expecting input "$24.99"
+  const priceStrToNumber = (priceStr) => Number(priceStr.slice(1));
+
+  // Sum up the cart total
+  const cartReducer = (total, item) => total + priceStrToNumber(item.price);
+  const cartTotal = cart.reduce(cartReducer, 0).toFixed(2);
+
+  // Dispatch action to remove item from state.cart
+  const handleRemoveItem = (productId) =>
+    dispatch(removeItemFromCart(productId));
 
   return (
     <>
-      <MainWrapper>
-        <Wrapper>
-          <Header>Shopping Cart</Header>
-          <ProductDetails>
-            <Head>PRODUCT</Head>
-            <Quantity>
-              <Head>QUANTITY</Head>
-              <Head>PRICE</Head>
-              <Head>TOTAL</Head>
-            </Quantity>
-          </ProductDetails>
-          <ItemList>
-            <Product>
-              <Img src={item.imageSrc} />
-              <ProductList>
-                <ProductName>{item.name}</ProductName>
-                <ProductId>Id:{item.id}</ProductId>
-              </ProductList>
-            </Product>
-            <Quantity>
-              <ItemQuant>
-                <select>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </select>
-                <Btn>Remove</Btn>
-              </ItemQuant>
-              <ItemPrice>$54</ItemPrice>
-              <ItemTotal>$54</ItemTotal>
-            </Quantity>
-          </ItemList>
-          <Btn>
+      {cart.length > 0 && status === STATUS.IDLE ? (
+        <MainWrapper>
+          <Wrapper>
+            <Header>Shopping Cart</Header>
+            <ProductDetails>
+              <Head>{cart.length > 1 ? "PRODUCTS" : "PRODUCT"}</Head>
+              <Quantity>
+                <Head>QUANTITY</Head>
+                <Head>PRICE</Head>
+                <Head>TOTAL</Head>
+              </Quantity>
+            </ProductDetails>
+
+            <ItemList>
+              {cart.map((item) => {
+                return (
+                  <ItemLi key={item.id}>
+                    <ItemWrapper>
+                      <Product>
+                        <Img src={item.imageSrc} />
+                        <ProductList>
+                          <ProductName>{item.name}</ProductName>
+                          <ProductId>Id:{item.id}</ProductId>
+                        </ProductList>
+                      </Product>
+                      <Quantity>
+                        <ItemQuant>
+                          <select>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                          <Btn onClick={() => handleRemoveItem(item.id)}>
+                            Remove
+                          </Btn>
+                        </ItemQuant>
+                        <ItemPrice>{item.price}</ItemPrice>
+                        <ItemTotal>
+                          ${priceStrToNumber(item.price) * 2}
+                        </ItemTotal>
+                      </Quantity>
+                    </ItemWrapper>
+                  </ItemLi>
+                );
+              })}
+            </ItemList>
+
             <Link to="/products" style={{ color: "black" }}>
-              Continue Shopping
+              <Btn>Continue Shopping</Btn>
             </Link>
-          </Btn>
-        </Wrapper>
-        <Card>
-          <CardHeading>Order Summary</CardHeading>
-          <CardOrder>Items:</CardOrder>
-          <CardTotal>Total:</CardTotal>
-          <CardBtn>Checkout</CardBtn>
-        </Card>
-      </MainWrapper>
+          </Wrapper>
+          <Card>
+            <CardHeading>Order Summary</CardHeading>
+            <CardOrder>
+              <span>Items:</span>
+              <span>{cart.length}</span>
+            </CardOrder>
+            <CardTotal>
+              <span>Total:</span>
+              <span>${cartTotal}</span>
+            </CardTotal>
+            <CardBtn>Checkout</CardBtn>
+          </Card>
+        </MainWrapper>
+      ) : (
+        <EmptyDiv>
+          <Empty href="/products">
+            Your <FaOpencart style={{ margin: "0rem 1rem" }} /> Is Empty
+          </Empty>
+        </EmptyDiv>
+      )}
     </>
   );
 };
 
+const EmptyDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-weight: bold;
+  font-size: 2rem;
+`;
+
+const Empty = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  height: 5rem;
+  width: 20rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+`;
+
 const MainWrapper = styled.div`
   display: grid;
   grid-template-areas: "content content card";
+  margin: 10rem 10vw;
+
   @media (max-width: 1100px) {
     grid-template-areas:
       "content"
@@ -74,14 +139,24 @@ const MainWrapper = styled.div`
 
 const Wrapper = styled.div`
   grid-area: content;
-  margin: 10rem auto;
+  margin-right: 5rem;
   width: auto;
   border-radius: 0.5rem;
+
+  @media (max-width: 1100px) {
+    margin-right: 0;
+    margin-bottom: 5rem;
+  }
+`;
+
+const ItemWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 const Head = styled.span`
   font-size: 1rem;
-  margin: 0.7rem;
+  margin: 1.2rem;
 `;
 
 const Header = styled.div`
@@ -104,7 +179,7 @@ const Quantity = styled.span`
 `;
 
 const Img = styled.img`
-  margin: 1rem;
+  margin: 1.5rem;
 `;
 
 const Product = styled.div`
@@ -113,10 +188,17 @@ const Product = styled.div`
   flex-direction: row;
 `;
 
-const ItemList = styled.div`
+const ItemList = styled.ul`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   border-bottom: thin solid grey;
+  border-bottom: thin grey solid;
+`;
+
+const ItemLi = styled.li`
+  display: flex;
+  flex-direction: row;
 `;
 
 const ItemQuant = styled.span`
@@ -135,8 +217,8 @@ const ItemTotal = styled.span`
 
 const ProductList = styled.div`
   display: grid;
-  grid-auto-columns: 5rem;
-  margin: 1rem;
+  grid-auto-columns: 10rem;
+  margin: 1.5rem;
 `;
 
 const ProductName = styled.div`
@@ -154,20 +236,26 @@ const Btn = styled.button`
 
 const Card = styled.div`
   grid-area: card;
-  margin: 10rem auto;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  position: sticky;
+  top: 17rem;
+  height: 25rem;
   width: 20rem;
   padding: 1rem;
   background-color: #d1d9e0;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
+
   @media (max-width: 1100px) {
+    position: relative;
+    top: 0;
     height: 15rem;
-    margin-top: -3rem;
+    margin: 0 auto;
   }
 `;
 
@@ -177,9 +265,17 @@ const CardHeading = styled.span`
   border-bottom: solid thin grey;
 `;
 
-const CardOrder = styled.span``;
+const CardOrder = styled.span`
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+`;
 
-const CardTotal = styled.span``;
+const CardTotal = styled.span`
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+`;
 
 const CardBtn = styled.button`
   font-size: 1.1rem;

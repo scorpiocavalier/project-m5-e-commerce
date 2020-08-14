@@ -8,13 +8,13 @@ export default () => {
       <Copyright>&copy; 2020 The ARK Project. All rights reserved.</Copyright>
       <IconWrapper>
         <IconWrap>
-          <FiFacebook style={{ color: "#ccc" }} />
+          <FiFacebook style={{ color: "#ccc" }} size={20} />
         </IconWrap>
         <IconWrap>
-          <FiInstagram style={{ color: "#ccc" }} />
+          <FiInstagram style={{ color: "#ccc" }} size={20} />
         </IconWrap>
         <IconWrap>
-          <FiLinkedin style={{ color: "#ccc" }} />
+          <FiLinkedin style={{ color: "#ccc" }} size={20} />
         </IconWrap>
       </IconWrapper>
     </Wrapper>
@@ -25,7 +25,12 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 15px;
   height: 100%;
+
+  @media (min-width: 1200px) {
+    padding: 0 10%;
+  }
 `;
 
 const IconWrapper = styled.div`
@@ -39,6 +44,7 @@ const IconWrap = styled.button`
 `;
 
 const Copyright = styled.span`
-  font-size: 12px;
+  font-size: 1rem;
   color: #ccc;
+  margin-left: 0.5rem;
 `;

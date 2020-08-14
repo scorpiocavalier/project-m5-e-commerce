@@ -1,58 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { useShopContext } from "../context/ShopContext";
+import { setCategory } from "../context/actions";
 
 export default function Filter() {
   const {
-    state: { items },
-    category,
-    setCategory,
+    state: { categories },
+    dispatch,
   } = useShopContext();
 
-  const handleSelect = (e) => setCategory(e.target.value);
-
-  // Fitness, Medical, Lifestyle, Entertainment, Industrial, Gaming, Pets and Animals
-
   return (
-    <ButtonDiv>
-      <label for="categories">Select a category</label>
+    <Wrapper>
+      <Label htmlFor="categories">Select a category</Label>
       <CategoryFilter
-        onChange={(e) => handleSelect(e)}
+        onChange={(e) => dispatch(setCategory(e.target.value))}
         name="categories"
         id="categories"
       >
-        <option value="">All</option>
-        <option value="Fitness">Fitness</option>
-        <option value="Medical">Medical</option>
-        <option value="Lifestyle">Lifestyle</option>
-        <option value="Entertainment">Entertainment</option>
-        <option value="Industrial">Industrial</option>
-        <option value="Gaming">Gaming</option>
-        <option value="Pets and Animals">Pets and Animals</option>
+        {categories.map((category) => (
+          <option key={category} value={category}>
+            {category}
+          </option>
+        ))}
       </CategoryFilter>
-    </ButtonDiv>
+    </Wrapper>
   );
 }
 
-const ButtonDiv = styled.div`
+const Wrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  border-top: 1px solid #dee0df;
-  padding: 10px 0px 0px 0px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Label = styled.label`
+  font-size: 20px;
 `;
 
 const CategoryFilter = styled.select`
-  /* border: solid red 2px; */
   grid-column-start: 1;
-
-  width: 180px;
+  width: 200px;
   height: 35px;
-  margin: 10px 0px 0px 0px;
-
+  margin-top: 10px;
   background-color: #dee0df;
   border-radius: 5px;
-
   cursor: pointer;
 `;
