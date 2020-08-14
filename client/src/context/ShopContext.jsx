@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useReducer,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, useContext, useReducer, useEffect } from "react";
 
 import { STATUS, setState, setCurrentUser, setSignedIn } from "./actions";
 import { shopReducer } from "./reducers";
@@ -32,28 +26,16 @@ export const useShopContext = () => useContext(ShopContext);
 // This context provider will wrap the app
 export const ShopProvider = ({ children }) => {
   const [state, dispatch] = useReducer(shopReducer, initialState);
-  const [category, setCategory] = useState(null);
-  console.log("categories", category);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch the list of items from the API
-        let res = await fetch(`/products`);
-        const items = await res.json();
-        // Fetch the list of companies from the API
-
-        // res = await fetch(`/companies`);
-        // const companies = await res.json();
-
-        const database = firebase.database();
-        const itemsRef = database.ref("items");
-        const companiesRef = database.ref("companies");
-
-        const itemsSnapshot = await itemsRef.once("value");
-        const items = (await itemsSnapshot.val()) || null;
-
-        const companiesSnapshot = await companiesRef.once("value");
-        const companies = (await companiesSnapshot.val()) || null;
+        // Fetch data from Firebase database through Node
+        const items = await (await fetch(`/products`)).json();
+        const companies = await (await fetch(`/companies`)).json();
+        const categoriesObj = await (await fetch(`/categories`)).json();
+        const categories = Object.keys(categoriesObj);
+        const itemIds = Object.keys(items);
 
         // Assign a state listenner for firebase user
         firebase.auth().onAuthStateChanged((firebaseUser) => {
@@ -68,11 +50,6 @@ export const ShopProvider = ({ children }) => {
           }
         });
 
-        if (category) {
-          itemIds = itemIds.filter((itemId) => {
-            return items[itemId].category === category;
-          });
-        }
         // Create a new state
         const newState = {
           status: STATUS.IDLE,
@@ -95,7 +72,7 @@ export const ShopProvider = ({ children }) => {
   console.log("STATE", state);
 
   return (
-    <ShopContext.Provider value={{ state, dispatch, category, setCategory }}>
+    <ShopContext.Provider value={{ state, dispatch }}>
       {children}
     </ShopContext.Provider>
   );
