@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer, useEffect } from "react";
 
-import { STATUS, setState, setCurrentUser } from "./actions";
+import { STATUS, setState, setCurrentUser, setSignedIn } from "./actions";
 import { shopReducer } from "./reducers";
 import firebase from '../firebase/firebase'
 
@@ -17,6 +17,7 @@ const initialState = {
   itemIds: [],
   cart: [],
   currentUser: null,
+  signedIn: false,
 };
 
 // Custom hook for providing the ShopContext
@@ -41,9 +42,11 @@ export const ShopProvider = ({ children }) => {
           if (firebaseUser) {
             console.log('CURRENT USER', firebaseUser);
             dispatch(setCurrentUser(firebaseUser));
+            dispatch(setSignedIn(true));
           } else {
             console.log('NO CURRENT USER')
             dispatch(setCurrentUser(null))
+            dispatch(setSignedIn(false));
           }
         });
 
