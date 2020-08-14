@@ -67,10 +67,6 @@ const HeaderWrapper = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(32, 48, 64, 1);
-
-  @media (min-width: 768px) {
-    height: 8vh;
-  }
 `;
 
 const ContentWrapper = styled.div`

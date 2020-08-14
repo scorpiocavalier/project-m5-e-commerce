@@ -8,6 +8,7 @@ export const ACTIONS = {
   SET_STATE: "set-state",
   SET_STATUS: "set-status",
   SET_CATEGORY: "set-category",
+  SET_CURRENT_USER: "set-current-user",
   ADD_ITEM_TO_CART: "add-item-to-cart",
   REMOVE_ITEM_FROM_CART: "remove-item-from-cart",
 };
@@ -27,12 +28,20 @@ export const setStatus = (status) => {
   };
 };
 
-export const setCategory = (selectedCategory) => {
+export const setCategory = (category) => {
   return {
     type: ACTIONS.SET_CATEGORY,
-    payload: { category: selectedCategory },
+    payload: { category },
   };
 };
+
+export const setCurrentUser = (currentUser) => {
+  return {
+    type: ACTIONS.SET_CURRENT_USER,
+    payload: { currentUser },
+  }
+}
+
 
 export const addItemToCart = (itemId) => {
   return {

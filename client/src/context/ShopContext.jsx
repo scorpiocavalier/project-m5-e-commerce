@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useReducer, useEffect } from "react";
 
-import { STATUS, setState } from "./actions";
+import { STATUS, setState, setCurrentUser } from "./actions";
 import { shopReducer } from "./reducers";
+import firebase from '../firebase/firebase'
 
 // Create the shop context
 const ShopContext = createContext();
@@ -15,6 +16,7 @@ const initialState = {
   category: "All",
   itemIds: [],
   cart: [],
+  currentUser: null,
 };
 
 // Custom hook for providing the ShopContext
@@ -33,6 +35,16 @@ export const ShopProvider = ({ children }) => {
         const categoriesObj = await (await fetch(`/categories`)).json();
         const categories    = Object.keys(categoriesObj);
         const itemIds       = Object.keys(items);
+
+        // Assign a state listenner for firebase user
+        firebase.auth().onAuthStateChanged(firebaseUser => {
+          if (firebaseUser) {
+            console.log(firebaseUser);
+            dispatch(setCurrentUser(firebaseUser));
+          } else {
+            console.log('Not logged in.')
+          }
+        });
 
         // Create a new state
         const newState = { status: STATUS.IDLE, items, companies, categories, itemIds };

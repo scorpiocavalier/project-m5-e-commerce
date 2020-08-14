@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 
 import useClickOutside from "../hooks/useClickOutside";
 import { useShopContext } from '../context/ShopContext'
+import { auth } from "firebase";
 
 export default () => {
   const { state } = useShopContext();
-  const { cart } = state;
+  const { cart, currentUser } = state;
   const [active, setActive] = useState(false);
   const toggleMenu = () => setActive(!active);
   const dropdownRef = useRef(null);
@@ -24,9 +25,15 @@ export default () => {
         <DropdownLink to="/products">Shop</DropdownLink>
         <DropdownLink to="/cart">
           Cart
-          <CartItemCount>({ cart.length })</CartItemCount>
+          <CartItemCount>({cart.length})</CartItemCount>
         </DropdownLink>
-        <DropdownLink to="/sign-in">Sign In</DropdownLink>
+        {currentUser ? (
+          <DropdownLink to="/" onClick={() => auth.signOut()}>
+            Sign out
+          </DropdownLink>
+        ) : (
+          <DropdownLink to="/sign-in">Sign In</DropdownLink>
+        )}
       </NavLinks>
     </Wrapper>
   );

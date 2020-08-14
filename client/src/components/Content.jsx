@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar";
 import Shop from "./Shop";
 import Cart from "./Cart";
 import ProductDetails from "./ProductDetails";
+import SignIn from "./SignIn";
 
 // Render the content area based on status and path
 export default () => {
@@ -25,6 +26,9 @@ export default () => {
       </Route>
       <Route exact path="/cart">
         <Cart />
+      </Route>
+      <Route exact path="/sign-in">
+        <SignIn />
       </Route>
     </Switch>
   );

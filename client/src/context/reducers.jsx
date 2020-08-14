@@ -23,6 +23,9 @@ export const shopReducer = (state, action) => {
     case ACTIONS.SET_CATEGORY:
       return { ...state, category: payload.category };
 
+    case ACTIONS.SET_CURRENT_USER:
+      return { ...state, currentUser: payload.currentUser };
+
     case ACTIONS.ADD_ITEM_TO_CART: {
       const itemId = payload.itemId;
       const item = items[itemId];
