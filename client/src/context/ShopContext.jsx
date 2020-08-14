@@ -36,24 +36,6 @@ export const ShopProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-<<<<<<< HEAD
-        // Fetch data from Firebase database through Node
-        const items = await (await fetch(`/products`)).json();
-        const companies = await (await fetch(`/companies`)).json();
-        const categoriesObj = await (await fetch(`/categories`)).json();
-        const categories = Object.keys(categoriesObj);
-        const itemIds = Object.keys(items);
-
-        // Assign a state listenner for firebase user
-        firebase.auth().onAuthStateChanged((firebaseUser) => {
-          if (firebaseUser) {
-            console.log(firebaseUser);
-            dispatch(setCurrentUser(firebaseUser));
-          } else {
-            console.log("Not logged in.");
-          }
-        });
-=======
         // Fetch the list of items from the API
         let res = await fetch(`/products`);
         const items = await res.json();
@@ -73,7 +55,6 @@ export const ShopProvider = ({ children }) => {
         const companies = (await companiesSnapshot.val()) || null;
 
         let itemIds = Object.keys(items);
->>>>>>> 5f07dadd627b3f18eb2a2eb3e1bca169a07ae2a0
 
         if (category) {
           itemIds = itemIds.filter((itemId) => {
