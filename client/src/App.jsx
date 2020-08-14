@@ -3,30 +3,50 @@ import { BrowserRouter as Router } from "react-router-dom";
 import styled from "styled-components";
 
 import GlobalStyle from "./GlobalStyle";
+import { useShopContext } from "./context/ShopContext";
+import { STATUS } from "./context/actions";
+
 import Header from "./components/Header";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
+import Spinner from "./components/Spinner";
+import Error from "./components/Error";
 
 export default () => {
-  return (
-    <Router>
-      <Grid>
-        <GlobalStyle />
+  const { state } = useShopContext();
+  const { status } = state;
 
-        <HeaderWrapper>
-          <Header />
-        </HeaderWrapper>
+  switch (status) {
+    case STATUS.IDLE:
+      return (
+        <Router>
+          <Grid>
+            <GlobalStyle />
 
-        <ContentWrapper>
-          <Content />
-        </ContentWrapper>
+            <HeaderWrapper>
+              <Header />
+            </HeaderWrapper>
 
-        <FooterWrapper>
-          <Footer />
-        </FooterWrapper>
-      </Grid>
-    </Router>
-  );
+            <ContentWrapper>
+              <Content />
+            </ContentWrapper>
+
+            <FooterWrapper>
+              <Footer />
+            </FooterWrapper>
+          </Grid>
+        </Router>
+      );
+
+    case STATUS.LOADING:
+      return <Spinner />;
+
+    case STATUS.ERROR:
+      return <Error />;
+
+    default:
+      return <Error />;
+  }
 };
 
 const Grid = styled.div`
