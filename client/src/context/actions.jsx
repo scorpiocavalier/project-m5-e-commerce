@@ -7,9 +7,9 @@ export const STATUS = {
 export const ACTIONS = {
   SET_STATE: "set-state",
   SET_STATUS: "set-status",
+  SET_CATEGORY: "set-category",
   ADD_ITEM_TO_CART: "add-item-to-cart",
   REMOVE_ITEM_FROM_CART: "remove-item-from-cart",
-  SET_CATEGORY: "set-category",
 };
 
 // DISPATCH ACTIONS
@@ -41,7 +41,7 @@ export const addItemToCart = (itemId) => {
   };
 };
 
-export const removeItem = (itemId) => {
+export const removeItemFromCart = (itemId) => {
   return {
     type: ACTIONS.REMOVE_ITEM_FROM_CART,
     payload: { itemId },

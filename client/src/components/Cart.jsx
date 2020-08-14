@@ -4,21 +4,24 @@ import { Link } from "react-router-dom";
 import { FaOpencart } from "react-icons/fa";
 
 import { useShopContext } from "../context/ShopContext";
-import { STATUS } from "../context/actions";
+import { STATUS, removeItemFromCart } from "../context/actions";
 
 export default () => {
-  const {
-    state: { status, cart },
-  } = useShopContext();
+  const { state, dispatch } = useShopContext();
+  const { status, cart } = state;
+
   console.log("cart", cart);
 
-  const priceStrToNumber = (priceStr) => {
-    // expecting input "$24.99"
-    return Number(priceStr.slice(1));
-  };
+  // expecting input "$24.99"
+  const priceStrToNumber = (priceStr) => Number(priceStr.slice(1));
 
+  // Sum up the cart total
   const cartReducer = (total, item) => total + priceStrToNumber(item.price);
   const cartTotal = cart.reduce(cartReducer, 0).toFixed(2);
+
+  // Dispatch action to remove item from state.cart
+  const handleRemoveItem = (productId) =>
+    dispatch(removeItemFromCart(productId));
 
   return (
     <>
@@ -56,10 +59,14 @@ export default () => {
                             <option>4</option>
                             <option>5</option>
                           </select>
-                          <Btn>Remove</Btn>
+                          <Btn onClick={() => handleRemoveItem(item.id)}>
+                            Remove
+                          </Btn>
                         </ItemQuant>
                         <ItemPrice>{item.price}</ItemPrice>
-                        <ItemTotal>${priceStrToNumber(item.price) * 2}</ItemTotal>
+                        <ItemTotal>
+                          ${priceStrToNumber(item.price) * 2}
+                        </ItemTotal>
                       </Quantity>
                     </ItemWrapper>
                   </ItemLi>
@@ -67,11 +74,9 @@ export default () => {
               })}
             </ItemList>
 
-            <Btn>
-              <Link to="/products" style={{ color: "black" }}>
-                Continue Shopping
-              </Link>
-            </Btn>
+            <Link to="/products" style={{ color: "black" }}>
+              <Btn>Continue Shopping</Btn>
+            </Link>
           </Wrapper>
           <Card>
             <CardHeading>Order Summary</CardHeading>

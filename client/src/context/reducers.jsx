@@ -23,17 +23,20 @@ export const shopReducer = (state, action) => {
     case ACTIONS.SET_CATEGORY:
       return { ...state, category: payload.category };
 
-    case ACTIONS.ADD_ITEM_TO_CART:
+    case ACTIONS.ADD_ITEM_TO_CART: {
       const itemId = payload.itemId;
       const item = items[itemId];
       cart.push(item);
 
       return { ...state, cart: cart };
+    }
 
-    // case ACTIONS.REMOVE_ITEM_FROM_CART:
-    //   const newState = { ...state };
-    //   delete new action.payload.itemId();
-    //   return newState;
+    case ACTIONS.REMOVE_ITEM_FROM_CART: {
+      const itemId = payload.itemId;
+      const newCart = cart.filter((item) => item.id !== itemId);
+
+      return { ...state, cart: newCart };
+    }
 
     default:
       return state;
