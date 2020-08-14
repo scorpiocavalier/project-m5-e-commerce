@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 
-import { STATUS, setState, setCurrentUser } from "./actions";
+import { STATUS, setState, setCurrentUser, setSignedIn } from "./actions";
 import { shopReducer } from "./reducers";
 import firebase from "../firebase/firebase";
 
@@ -23,6 +23,7 @@ const initialState = {
   itemIds: [],
   cart: [],
   currentUser: null,
+  signedIn: false,
 };
 
 // Custom hook for providing the ShopContext
@@ -54,7 +55,18 @@ export const ShopProvider = ({ children }) => {
         const companiesSnapshot = await companiesRef.once("value");
         const companies = (await companiesSnapshot.val()) || null;
 
-        let itemIds = Object.keys(items);
+        // Assign a state listenner for firebase user
+        firebase.auth().onAuthStateChanged((firebaseUser) => {
+          if (firebaseUser) {
+            console.log("CURRENT USER", firebaseUser);
+            dispatch(setCurrentUser(firebaseUser));
+            dispatch(setSignedIn(true));
+          } else {
+            console.log("NO CURRENT USER");
+            dispatch(setCurrentUser(null));
+            dispatch(setSignedIn(false));
+          }
+        });
 
         if (category) {
           itemIds = itemIds.filter((itemId) => {
@@ -77,10 +89,10 @@ export const ShopProvider = ({ children }) => {
       }
     };
     fetchData();
-  }, [category]);
+  }, [state.currentUser]);
 
   console.count("ShopContext");
-  console.log(state);
+  console.log("STATE", state);
 
   return (
     <ShopContext.Provider value={{ state, dispatch, category, setCategory }}>

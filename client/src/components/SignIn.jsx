@@ -1,32 +1,46 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { history } from "react-router";
 import { auth } from "firebase";
 
 import { useShopContext } from "../context/ShopContext";
 
 export default () => {
   const { state } = useShopContext();
-  const { currentUser } = state;
+  const { currentUser, signedIn } = state;
 
   const [email, setEmail] = useState("");
-  const [ password, setPassword ] = useState("");
-  const [ feedbackMsg, setFeedbackMsg ] = useState("");
+  const [password, setPassword] = useState("");
+  const [feedbackMsg, setFeedbackMsg] = useState("");
 
   const handleSignin = () => {
     auth()
       .signInWithEmailAndPassword(email, password)
-      .then((e) => {
-        e.preventDefault();
-        console.log(email, password);
-        // history.push("/")
+      .then((user) => {
+        setFeedbackMsg("Signed in successfully. Enjoy the shopping spree!");
+        console.log("SIGNED IN USER", user);
+        // history.push("/") w/ delay
       })
       .catch((err) => setFeedbackMsg(err.message));
   };
 
-  const handleSignUp = () => {};
+  const handleSignUp = () => {
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+        setFeedbackMsg(
+          "Your account has been created and are currently logged in. Enjoy the shopping spree!"
+        );
+        console.log("SIGNED UP USER", user);
+        // history.push("/") w/ delay
+      })
+      .catch((err) => setFeedbackMsg(err.message));
+  };
 
-  const handleSignout = () => {};
+  const handleSignout = () => {
+    auth().signOut();
+    setFeedbackMsg("You are now signed out.");
+    // history.push("/") w/ delay
+  };
 
   return (
     <Wrapper>
@@ -49,9 +63,19 @@ export default () => {
         placeholder="Password"
       />
       <BtnWrapper>
-        <LoginBtn onClick={handleSignin}>Log in</LoginBtn>
+        <LoginBtn
+          onClick={handleSignin}
+          currentUser={currentUser}
+          signedIn={signedIn}
+        >
+          Log in
+        </LoginBtn>
         <SignUpBtn onClick={handleSignUp}>Sign Up</SignUpBtn>
-        <SignoutBtn onClick={handleSignout} currentUser={currentUser}>
+        <SignoutBtn
+          onClick={handleSignout}
+          currentUser={currentUser}
+          signedIn={signedIn}
+        >
           Log out
         </SignoutBtn>
       </BtnWrapper>
@@ -92,6 +116,7 @@ const BtnWrapper = styled.div`
 `;
 
 const LoginBtn = styled.button`
+  display: ${(p) => (p.signedIn && "none")};
   border: 1px solid #ccc;
   background: none;
   padding: 12px 10px;
@@ -105,8 +130,10 @@ const LoginBtn = styled.button`
   }
 `;
 
-const SignUpBtn = styled(LoginBtn)``;
+const SignUpBtn = styled(LoginBtn)`
+  display: flex;
+`;
 
 const SignoutBtn = styled(LoginBtn)`
-  display: ${(p) => (p.currentUser == null ? "flex" : "none")};
+  display: ${(p) => p.currentUser && p.signedIn ? "flex" : "none"};
 `;
