@@ -45,17 +45,11 @@ const Content = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 1rem;
-  background-color: white;
-  opacity: 0.7;
   position: absolute;
-  &:hover {
-    opacity: 0.9;
-  }
 `;
 
 const Title = styled.h1`
+  color: white;
   font-weight: bold;
-  margin-bottom: 6px;
-  font-size: 22px;
-  color: #4a4a4a;
+  font-size: 32px;
 `;
