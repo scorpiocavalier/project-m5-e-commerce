@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-export default ({ id, size, title, imageSrc }) => {
+export default ({ title, imageSrc }) => {
   return (
-    <Wrapper size={size}>
+    <Wrapper>
       <ImageWrapper src={imageSrc} />
       <Content>
         <Title>{title}</Title>

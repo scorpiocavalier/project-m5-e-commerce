@@ -1,6 +1,7 @@
 import React from "react";
-import categories from "../assets/categories";
 import styled from "styled-components";
+
+import categories from "../assets/categories";
 import Photos from "./Photos";
 
 export default () => {
