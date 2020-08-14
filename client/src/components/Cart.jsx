@@ -12,11 +12,13 @@ export default () => {
   } = useShopContext();
   console.log("cart", cart);
 
-  const cartReducer = (total, item) => {
-    const itemPrice = Number(item.price.slice(1));
-    return total + itemPrice;
+  const priceStrToNumber = (priceStr) => {
+    // expecting input "$24.99"
+    return Number(priceStr.slice(1));
   };
-  const cartTotal = cart.reduce(cartReducer, 0);
+
+  const cartReducer = (total, item) => total + priceStrToNumber(item.price);
+  const cartTotal = cart.reduce(cartReducer, 0).toFixed(2);
 
   return (
     <>
@@ -29,7 +31,7 @@ export default () => {
               <Quantity>
                 <Head>QUANTITY</Head>
                 <Head>PRICE</Head>
-                {/* <Head>TOTAL</Head> */}
+                <Head>TOTAL</Head>
               </Quantity>
             </ProductDetails>
 
@@ -57,6 +59,7 @@ export default () => {
                           <Btn>Remove</Btn>
                         </ItemQuant>
                         <ItemPrice>{item.price}</ItemPrice>
+                        <ItemTotal>${priceStrToNumber(item.price) * 2}</ItemTotal>
                       </Quantity>
                     </ItemWrapper>
                   </ItemLi>
@@ -193,6 +196,10 @@ const ItemQuant = styled.span`
 `;
 
 const ItemPrice = styled.span`
+  margin: 1.5rem;
+`;
+
+const ItemTotal = styled.span`
   margin: 1.5rem;
 `;
 

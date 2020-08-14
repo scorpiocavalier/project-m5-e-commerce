@@ -30,14 +30,14 @@ export default () => {
           <Route exact path="/products">
             <Shop />
           </Route>
-          <Route path="/search">
+          <Route exact path="/search">
             <SearchBar />
           </Route>
-          <Route path="/cart">
+          <Route exact path="/cart">
             <Cart />
           </Route>
 
-          <Route path="/firebase">
+          <Route exact path="/firebase">
             <Firestore />
           </Route>
 

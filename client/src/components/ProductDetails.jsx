@@ -8,7 +8,7 @@ import styled, { css } from "styled-components";
 import ComparePrice from "./ComparePrice";
 import { checkAvailability } from "./Product";
 
-export default function ProductDetails() {
+export default () => {
   const [item, setItem] = useState(null);
   const { productId } = useParams();
 
@@ -18,7 +18,9 @@ export default function ProductDetails() {
       .then((data) => {
         setItem(data);
       });
-  }, [productId]);
+  }, [ productId ]);
+
+  console.log(item, productId)
 
   return (
     <>

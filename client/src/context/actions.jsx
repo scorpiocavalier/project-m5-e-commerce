@@ -27,6 +27,13 @@ export const setStatus = (status) => {
   };
 };
 
+export const setCategory = (selectedCategory) => {
+  return {
+    type: ACTIONS.SET_CATEGORY,
+    payload: { category: selectedCategory },
+  };
+};
+
 export const addItemToCart = (itemId) => {
   return {
     type: ACTIONS.ADD_ITEM_TO_CART,
@@ -38,12 +45,5 @@ export const removeItem = (itemId) => {
   return {
     type: ACTIONS.REMOVE_ITEM_FROM_CART,
     payload: { itemId },
-  };
-};
-
-export const setCategory = (selectedCategory) => {
-  return {
-    type: ACTIONS.SET_CATEGORY,
-    payload: { category: selectedCategory },
   };
 };

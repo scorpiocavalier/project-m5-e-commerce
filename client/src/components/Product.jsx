@@ -32,7 +32,7 @@ export default ({ item }) => {
         </PriceAvailability>
 
         <ActionWrapper>
-          <Link to={`/product/${id}`}>
+          <Link to={`/products/${id}`}>
             <MoreInfo>More info</MoreInfo>
           </Link>
 

@@ -3,8 +3,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import useClickOutside from "../hooks/useClickOutside";
+import { useShopContext } from '../context/ShopContext'
 
 export default () => {
+  const { state } = useShopContext();
+  const { cart } = state;
   const [active, setActive] = useState(false);
   const toggleMenu = () => setActive(!active);
   const dropdownRef = useRef(null);
@@ -19,7 +22,10 @@ export default () => {
       </BurgerMenu>
       <NavLinks onClick={toggleMenu} active={active}>
         <DropdownLink to="/products">Shop</DropdownLink>
-        <DropdownLink to="/cart">Cart</DropdownLink>
+        <DropdownLink to="/cart">
+          Cart
+          <CartItemCount>({ cart.length })</CartItemCount>
+        </DropdownLink>
         <DropdownLink to="/sign-in">Sign In</DropdownLink>
       </NavLinks>
     </Wrapper>
@@ -119,3 +125,5 @@ const DropdownLink = styled(Link)`
     }
   }
 `;
+
+const CartItemCount = styled.span``

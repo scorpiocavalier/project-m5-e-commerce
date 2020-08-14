@@ -3,8 +3,10 @@ import React, { createContext, useContext, useReducer, useEffect } from "react";
 import { STATUS, setState } from "./actions";
 import { shopReducer } from "./reducers";
 
-// Create the shop context and initial state
+// Create the shop context
 const ShopContext = createContext();
+
+// Create the initial state
 const initialState = {
   status: STATUS.LOADING,
   items: null,
@@ -26,26 +28,14 @@ export const ShopProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         // Fetch data from Firebase database through Node
-        let res = await fetch(`/products`);
-        const items = await res.json();
-
-        res = await fetch(`/companies`);
-        const companies = await res.json();
-
-        res = await fetch(`/categories`);
-        const categoriesObj = await res.json();
-        const categories = Object.keys(categoriesObj);
-
-        const itemIds = Object.keys(items);
+        const items         = await (await fetch(`/products`)).json();
+        const companies     = await (await fetch(`/companies`)).json();
+        const categoriesObj = await (await fetch(`/categories`)).json();
+        const categories    = Object.keys(categoriesObj);
+        const itemIds       = Object.keys(items);
 
         // Create a new state
-        const newState = {
-          status: STATUS.IDLE,
-          items,
-          companies,
-          categories,
-          itemIds,
-        };
+        const newState = { status: STATUS.IDLE, items, companies, categories, itemIds };
 
         // Pass the new state to the dispatch
         dispatch(setState(newState));
