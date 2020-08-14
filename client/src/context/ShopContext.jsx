@@ -36,6 +36,7 @@ export const ShopProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+<<<<<<< HEAD
         // Fetch data from Firebase database through Node
         const items = await (await fetch(`/products`)).json();
         const companies = await (await fetch(`/companies`)).json();
@@ -52,6 +53,27 @@ export const ShopProvider = ({ children }) => {
             console.log("Not logged in.");
           }
         });
+=======
+        // Fetch the list of items from the API
+        let res = await fetch(`/products`);
+        const items = await res.json();
+        // Fetch the list of companies from the API
+
+        // res = await fetch(`/companies`);
+        // const companies = await res.json();
+
+        const database = firebase.database();
+        const itemsRef = database.ref("items");
+        const companiesRef = database.ref("companies");
+
+        const itemsSnapshot = await itemsRef.once("value");
+        const items = (await itemsSnapshot.val()) || null;
+
+        const companiesSnapshot = await companiesRef.once("value");
+        const companies = (await companiesSnapshot.val()) || null;
+
+        let itemIds = Object.keys(items);
+>>>>>>> 5f07dadd627b3f18eb2a2eb3e1bca169a07ae2a0
 
         if (category) {
           itemIds = itemIds.filter((itemId) => {
