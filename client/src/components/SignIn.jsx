@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { history } from "react-router";
 import { auth } from "firebase";
 
 import { useShopContext } from "../context/ShopContext";
@@ -10,11 +10,18 @@ export default () => {
   const { currentUser } = state;
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [ password, setPassword ] = useState("");
+  const [ feedbackMsg, setFeedbackMsg ] = useState("");
 
   const handleSignin = () => {
-    auth().signInWithEmailAndPassword(email, password)
-      .catch((err) => console.log(err.message));
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((e) => {
+        e.preventDefault();
+        console.log(email, password);
+        // history.push("/")
+      })
+      .catch((err) => setFeedbackMsg(err.message));
   };
 
   const handleSignUp = () => {};
@@ -24,6 +31,7 @@ export default () => {
   return (
     <Wrapper>
       <Header>Sign in</Header>
+      <Feedback>{feedbackMsg}</Feedback>
       <Input
         type="email"
         name="email"
@@ -41,13 +49,9 @@ export default () => {
         placeholder="Password"
       />
       <BtnWrapper>
-        <LoginBtn to="/" onClick={handleSignin}>
-          Log in
-        </LoginBtn>
-        <SignUpBtn to="/" onClick={handleSignUp}>
-          Sign Up
-        </SignUpBtn>
-        <SignoutBtn to="/" onClick={handleSignout} currentUser={currentUser}>
+        <LoginBtn onClick={handleSignin}>Log in</LoginBtn>
+        <SignUpBtn onClick={handleSignUp}>Sign Up</SignUpBtn>
+        <SignoutBtn onClick={handleSignout} currentUser={currentUser}>
           Log out
         </SignoutBtn>
       </BtnWrapper>
@@ -65,8 +69,12 @@ const Wrapper = styled.div`
 `;
 
 const Header = styled.h2`
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   font-size: 32px;
+`;
+
+const Feedback = styled.p`
+  margin-bottom: 2rem;
 `;
 
 const Input = styled.input`
@@ -83,7 +91,7 @@ const BtnWrapper = styled.div`
   padding-top: 1rem;
 `;
 
-const LoginBtn = styled(Link)`
+const LoginBtn = styled.button`
   border: 1px solid #ccc;
   background: none;
   padding: 12px 10px;
@@ -99,17 +107,6 @@ const LoginBtn = styled(Link)`
 
 const SignUpBtn = styled(LoginBtn)``;
 
-const SignoutBtn = styled.button`
+const SignoutBtn = styled(LoginBtn)`
   display: ${(p) => (p.currentUser == null ? "flex" : "none")};
-  border: 1px solid #ccc;
-  background: none;
-  padding: 12px 10px;
-  margin: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-
-  &:hover {
-    background: #2b3b4a;
-    color: white;
-  }
 `;
