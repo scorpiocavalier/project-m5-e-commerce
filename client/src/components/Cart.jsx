@@ -128,6 +128,8 @@ const Empty = styled.a`
 const MainWrapper = styled.div`
   display: grid;
   grid-template-areas: "content content card";
+  margin: 10rem 10vw;
+
   @media (max-width: 1100px) {
     grid-template-areas:
       "content"
@@ -137,9 +139,14 @@ const MainWrapper = styled.div`
 
 const Wrapper = styled.div`
   grid-area: content;
-  margin: 10rem auto;
+  margin-right: 5rem;
   width: auto;
   border-radius: 0.5rem;
+
+  @media (max-width: 1100px) {
+    margin-right: 0;
+    margin-bottom: 5rem;
+  }
 `;
 
 const ItemWrapper = styled.div`
@@ -228,24 +235,27 @@ const Btn = styled.button`
 `;
 
 const Card = styled.div`
-  position: sticky;
-  top: 17rem;
   grid-area: card;
-  height: 25rem;
-  margin: 10rem auto;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  position: sticky;
+  top: 17rem;
+  height: 25rem;
   width: 20rem;
   padding: 1rem;
   background-color: #d1d9e0;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
+
   @media (max-width: 1100px) {
+    position: relative;
+    top: 0;
     height: 15rem;
-    margin-top: -3rem;
+    margin: 0 auto;
   }
 `;
 
