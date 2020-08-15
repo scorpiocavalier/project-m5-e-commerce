@@ -8,3 +8,19 @@
 
 ## Website Tour 3
 <img src="./project_screenshots/Website Tour 3.gif" />
+
+## Sign in with Firebase Authentication
+<img src="./project_screenshots/Sign In.PNG" />
+
+## Firebase Real Time Database
+<img src="./project_screenshots/Firebase Real Time Database.PNG" />
+
+## Category Gallery
+<img src="./project_screenshots/Category Gallery.PNG" />
+
+## Shop
+<img src="./project_screenshots/Shop.PNG" />
+
+## Cart
+<img src="./project_screenshots/Cart.PNG" />
+
